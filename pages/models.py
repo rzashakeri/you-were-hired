@@ -11,6 +11,8 @@ class PageModel(models.Model):
     slug = models.SlugField(max_length=255)
 
     class Meta:
+        # pylint: disable=missing-docstring
+        # pylint: disable=too-few-public-methods
         verbose_name = "page"
         verbose_name_plural = "pages"
 
