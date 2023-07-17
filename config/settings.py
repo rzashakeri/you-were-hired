@@ -51,7 +51,9 @@ INSTALLED_APPS = [
 	# third party apps
 	"tailwind",
 	"theme",
-	"django_browser_reload"
+	"django_browser_reload",
+	# internal apps
+	"pages"
 ]
 
 MIDDLEWARE = [
