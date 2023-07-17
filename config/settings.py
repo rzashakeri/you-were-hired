@@ -135,9 +135,9 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# django tailwind
 # https://django-tailwind.readthedocs.io/en/latest/installation.html#optional-configurations
 TAILWIND_APP_NAME = 'theme'
-
 INTERNAL_IPS = [
 	"127.0.0.1",
 ]
