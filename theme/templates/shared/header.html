@@ -1,6 +1,6 @@
 {% load i18n static %}
 <header id="header">
-    <nav id="navbar">
+    <nav id="navbar" class="flex justify-between">
         <p class="logo">you were hired</p>
         <div class="menu flex gap-x-2">
             <div class="menu-item flex gap-x-1">
@@ -16,8 +16,8 @@
                 <span class="menu-text">{% translate 'History' %}</span>
             </div>
             <div class="menu-item flex gap-x-1">
-                <img class="menu-icon w-5" src="{% static 'css/images/icons/history.svg' %}" alt="Find Jobs">
-                <span class="menu-text">{% translate 'History' %}</span>
+                <img class="menu-icon w-5" src="{% static 'css/images/icons/help.svg' %}" alt="Find Jobs">
+                <span class="menu-text">{% translate 'Help' %}</span>
             </div>
         </div>
         <div class="extra-menu"></div>
