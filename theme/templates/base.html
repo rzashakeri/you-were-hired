@@ -14,10 +14,9 @@
 
     {% block css %}
     {% endblock %}
+    {% tailwind_preload_css %}
+    {% tailwind_css %}
 
-
-    <!-- Le javascript
-    ================================================== -->
     {# Placed at the top of the document so pages load faster with defer #}
     {% block javascript %}
     {% endblock javascript %}
