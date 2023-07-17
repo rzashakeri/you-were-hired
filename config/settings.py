@@ -48,6 +48,12 @@ INSTALLED_APPS = [
 	"django.contrib.sessions",
 	"django.contrib.messages",
 	"django.contrib.staticfiles",
+	# third party apps
+	"tailwind",
+	"theme",
+	"django_browser_reload",
+	# internal apps
+	"pages"
 ]
 
 MIDDLEWARE = [
@@ -58,6 +64,7 @@ MIDDLEWARE = [
 	"django.contrib.auth.middleware.AuthenticationMiddleware",
 	"django.contrib.messages.middleware.MessageMiddleware",
 	"django.middleware.clickjacking.XFrameOptionsMiddleware",
+	"django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -129,3 +136,12 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# django tailwind
+# https://django-tailwind.readthedocs.io/en/latest/installation.html#optional-configurations
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = [
+	"127.0.0.1",
+]
+# https://stackoverflow.com/questions/72033027/i-am-making-a-website-using-django-and-tailwind-css-but-in-cpanel-i-am-getting
+NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
