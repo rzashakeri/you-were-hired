@@ -8,3 +8,4 @@ typing-extensions==4.7.1
 tzdata==2023.3
 wheel==0.40.0
 django-environ==0.10.0
+django-tailwind==3.4.0
