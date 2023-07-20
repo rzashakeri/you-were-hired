@@ -5,10 +5,10 @@
 {% endblock %}
 {% block content %}
     <div class="flex flex-row bg-base-200">
-        <div class="w-3/12 p-3 m-5 rounded-xl bg-base-100">
+        <div class="max-xl:hidden w-3/12 p-3 m-5 rounded-xl bg-base-100">
             <div title="{% translate 'Get Latest Jobs' %}" class="card bg-blue-600 text-base-100">
                 <div class="card-body">
-                    <h2 class="card-title text-2xl text-base-100">{% translate 'Get The Latest Jobs Right Into Your Inbox!' %}</h2>
+                    <h2 class="card-title text-2xl text-white">{% translate 'Get The Latest Jobs Right Into Your Inbox!' %}</h2>
                     <p class="text-base-100 mb-3">{% translate 'We Just Need Your Email Address' %}</p>
                     <div class="card-actions">
                         <div class="join ">
@@ -159,10 +159,10 @@
                 </div>
             </div>
         </div>
-        <div class="w-9/12">
+        <div class="w-full xl:w-9/12">
             <div class="flex flex-col">
                 <div title="{% translate 'search' %}">
-                    <form class="flex flex-col xl:flex-row bg-base-100 p-10 xl:p-3 rounded-lg mb-10 mt-5 mr-5">
+                    <form class="flex flex-col xl:flex-row bg-base-100 p-10 xl:p-3 rounded-lg mb-10 mt-5 mx-3">
                         <div class="flex flex-row items-center justify-center w-4/5">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor" class="w-8 h-8">
@@ -207,21 +207,193 @@
                         <button class="btn btn-success capitalize">{% translate 'Search Job' %}</button>
                     </form>
                 </div>
-                <div title="{% translate 'Jobs' %}" class="flex flex-row justify-between">
-                    <div title="Result Count" class="flex fle-row">
-                        <p>{% translate 'Showing:' %} <span
-                                class="font-bold">1,902 </span>{% translate 'Filtered Jobs' %}</p>
+                <div title="{% translate 'Jobs' %}" class="flex flex-col mx-5 xl:mx-3">
+                    <div class="flex flex-row justify-between items-center">
+                        <div title="Result Count" class="flex fle-row">
+                            <p class="ml-5">{% translate 'Showing:' %} <span
+                                    class="font-bold">1,902 </span>{% translate 'Filtered Jobs' %}</p>
+                        </div>
+                        <div title="Sort By" class="flex flex-row gap-3 items-center">
+                            <p>{% translate 'Sort By:' %}</p>
+                            <label>
+                                <select class="select select-bordered w-full max-w-xs">
+                                    <option disabled selected>Normal</option>
+                                    <option>Normal Apple</option>
+                                    <option>Normal Orange</option>
+                                    <option>Normal Tomato</option>
+                                </select>
+                            </label>
+                        </div>
                     </div>
-                    <div title="Sort By" class="flex flex-row gap-3 mr-5 items-center">
-                        <p>{% translate 'Sort By:' %}</p>
-                        <label>
-                            <select class="select select-bordered w-full max-w-xs">
-                                <option disabled selected>Normal</option>
-                                <option>Normal Apple</option>
-                                <option>Normal Orange</option>
-                                <option>Normal Tomato</option>
-                            </select>
-                        </label>
+                    <div title="Results" class="flex flex-row gap-3 flex-wrap justify-center mt-5">
+                        <div title="job" class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
+                            <div title="job head" class="flex flex-row gap-3 items-center mb-4">
+                                <img title="Job Image" class="rounded-[12px] w-12 h-12"
+                                     src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
+                                     alt="">
+                                <div class="flex flex-col gap-1">
+                                    <p class="font-bold">Senior UI Designer</p>
+                                    <div class="flex flex-row gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+                                        </svg>
+                                        <span>Tehran, Iran</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div title="Job Body" class="flex flex-col gap-4">
+                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
+                                <div class="flex flex-row gap-2">
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Full Time</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Design</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">On - Site</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div title="job" class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
+                            <div title="job head" class="flex flex-row gap-3 items-center mb-4">
+                                <img title="Job Image" class="rounded-[12px] w-12 h-12"
+                                     src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
+                                     alt="">
+                                <div class="flex flex-col gap-1">
+                                    <p class="font-bold">Senior UI Designer</p>
+                                    <div class="flex flex-row gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+                                        </svg>
+                                        <span>Tehran, Iran</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div title="Job Body" class="flex flex-col gap-4">
+                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
+                                <div class="flex flex-row gap-2">
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Full Time</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Design</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">On - Site</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div title="job" class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
+                            <div title="job head" class="flex flex-row gap-3 items-center mb-4">
+                                <img title="Job Image" class="rounded-[12px] w-12 h-12"
+                                     src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
+                                     alt="">
+                                <div class="flex flex-col gap-1">
+                                    <p class="font-bold">Senior UI Designer</p>
+                                    <div class="flex flex-row gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+                                        </svg>
+                                        <span>Tehran, Iran</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div title="Job Body" class="flex flex-col gap-4">
+                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
+                                <div class="flex flex-row gap-2">
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Full Time</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Design</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">On - Site</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div title="job" class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
+                            <div title="job head" class="flex flex-row gap-3 items-center mb-4">
+                                <img title="Job Image" class="rounded-[12px] w-12 h-12"
+                                     src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
+                                     alt="">
+                                <div class="flex flex-col gap-1">
+                                    <p class="font-bold">Senior UI Designer</p>
+                                    <div class="flex flex-row gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+                                        </svg>
+                                        <span>Tehran, Iran</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div title="Job Body" class="flex flex-col gap-4">
+                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
+                                <div class="flex flex-row gap-2">
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Full Time</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Design</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">On - Site</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div title="job" class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
+                            <div title="job head" class="flex flex-row gap-3 items-center mb-4">
+                                <img title="Job Image" class="rounded-[12px] w-12 h-12"
+                                     src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
+                                     alt="">
+                                <div class="flex flex-col gap-1">
+                                    <p class="font-bold">Senior UI Designer</p>
+                                    <div class="flex flex-row gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+                                        </svg>
+                                        <span>Tehran, Iran</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div title="Job Body" class="flex flex-col gap-4">
+                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
+                                <div class="flex flex-row gap-2">
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Full Time</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Design</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">On - Site</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div title="job" class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
+                            <div title="job head" class="flex flex-row gap-3 items-center mb-4">
+                                <img title="Job Image" class="rounded-[12px] w-12 h-12"
+                                     src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
+                                     alt="">
+                                <div class="flex flex-col gap-1">
+                                    <p class="font-bold">Senior UI Designer</p>
+                                    <div class="flex flex-row gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+                                        </svg>
+                                        <span>Tehran, Iran</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div title="Job Body" class="flex flex-col gap-4">
+                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
+                                <div class="flex flex-row gap-2">
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Full Time</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Design</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">On - Site</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
