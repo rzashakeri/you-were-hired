@@ -9,7 +9,7 @@
             <div title="{% translate 'Get Latest Jobs' %}" class="card bg-blue-600 text-base-100">
                 <div class="card-body">
                     <h2 class="card-title text-2xl text-white">{% translate 'Get The Latest Jobs Right Into Your Inbox!' %}</h2>
-                    <p class="text-base-100 mb-3">{% translate 'We Just Need Your Email Address' %}</p>
+                    <p class="text-white mb-3">{% translate 'We Just Need Your Email Address' %}</p>
                     <div class="card-actions">
                         <div class="join ">
                             <input class="bg-white bg-opacity-20 backdrop-blur-xl rounded w-full focus:outline-none border-none focus:ring-0 placeholder:text-white join-item"
@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div title="{% translate 'Job Type' %}" tabindex="0" class="collapse collapse-arrow collapse-open">
+            <div title="{% translate 'Job Type' %}" onclick="collapse(this)" tabindex="0" class="collapse collapse-arrow collapse-open">
                 <div class="collapse-title text-lg font-medium">
                     <div class="flex flex-row gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -66,7 +66,7 @@
                     </label>
                 </div>
             </div>
-            <div title="{% translate 'Experience' %}" tabindex="0" class="collapse collapse-arrow">
+            <div title="{% translate 'Experience' %}" onclick="collapse(this)" tabindex="0" class="collapse collapse-arrow collapse-open">
                 <div class="collapse-title text-lg font-medium">
                     <div class="flex flex-row gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -112,7 +112,7 @@
                     </label>
                 </div>
             </div>
-            <div title="{% translate 'Education' %}" tabindex="0" class="collapse collapse-arrow">
+            <div title="{% translate 'Education' %}" onclick="collapse(this)" tabindex="0" class="collapse collapse-arrow  collapse-open">
                 <div class="collapse-title text-lg font-medium">
                     <div class="flex flex-row gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -162,7 +162,7 @@
         <div class="w-full xl:w-9/12">
             <div class="flex flex-col">
                 <div title="{% translate 'search' %}">
-                    <form class="flex flex-col xl:flex-row bg-base-100 p-10 xl:p-3 rounded-lg mb-10 mt-5 mx-3">
+                    <form class="flex flex-col lg:flex-row bg-base-100 p-6 lg:p-3 rounded-lg mb-10 mt-5 mx-3">
                         <div class="flex flex-row items-center justify-center w-4/5">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor" class="w-8 h-8">
@@ -172,7 +172,7 @@
                             <input type="text" placeholder="Job Title"
                                    class="input w-full pr-16 focus:outline-none border-none focus:ring-0"/>
                         </div>
-                        <div class="divider xl:divider-horizontal"></div>
+                        <div class="divider lg:divider-horizontal"></div>
                         <div class="flex flex-row items-center justify-center w-4/5">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor" class="w-8 h-8">
@@ -184,7 +184,7 @@
                             <input type="text" placeholder="Location"
                                    class="input w-full pr-16 focus:outline-none border-none focus:ring-0"/>
                         </div>
-                        <div class="divider xl:divider-horizontal"></div>
+                        <div class="divider lg:divider-horizontal"></div>
                         <div class="flex flex-row items-center justify-center w-4/5">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor" class="w-8 h-8">
@@ -194,8 +194,8 @@
                             <input type="text" placeholder="Remote"
                                    class="input w-full pr-16 focus:outline-none border-none focus:ring-0"/>
                         </div>
-                        <div class="divider xl:divider-horizontal"></div>
-                        <div class="flex flex-row items-center justify-center w-4/5 mb-5 xl:mb-0">
+                        <div class="divider lg:divider-horizontal"></div>
+                        <div class="flex flex-row items-center justify-center w-4/5 mb-5 lg:mb-0">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor" class="w-8 h-8">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -208,12 +208,12 @@
                     </form>
                 </div>
                 <div title="{% translate 'Jobs' %}" class="flex flex-col mx-5 xl:mx-3">
-                    <div class="flex flex-row justify-between items-center">
+                    <div class="flex flex-row justify-between items-center flex-wrap gap-4">
                         <div title="Result Count" class="flex fle-row">
-                            <p class="ml-5">{% translate 'Showing:' %} <span
+                            <p class="">{% translate 'Showing:' %} <span
                                     class="font-bold">1,902 </span>{% translate 'Filtered Jobs' %}</p>
                         </div>
-                        <div title="Sort By" class="flex flex-row gap-3 items-center">
+                        <div title="Sort By" class="max-xl:hidden flex flex-row gap-3 items-center">
                             <p>{% translate 'Sort By:' %}</p>
                             <label>
                                 <select class="select select-bordered w-full max-w-xs">
@@ -224,9 +224,60 @@
                                 </select>
                             </label>
                         </div>
+                        <div tabindex="0" class="xl:hidden collapse collapse-arrow border bg-base-100">
+                            <div class="collapse-title text-xl font-medium">
+                                Filters
+                            </div>
+                            <div class="collapse-content">
+                                <div class="w-full">
+                                    <div class="rounded-xl p-6">
+                                        <h2 class="text-base-content text-xl font-bold">Apply filters</h2>
+                                        <p class="mt-1 text-sm">Use filters to further refine search</p>
+                                        <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                                            <div class="flex flex-col">
+                                                <label for="name" class="text-sm font-medium">Name</label>
+                                                <input type="text" id="name" placeholder="raspberry juice"
+                                                       class="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"/>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <label for="manufacturer"
+                                                       class="text-sm font-medium">Manufacturer</label>
+                                                <input type="manufacturer" id="manufacturer" placeholder="cadbery"
+                                                       class="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"/>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <label for="date" class="text-sm font-medium">Date of
+                                                    Entry</label>
+                                                <input type="date" id="date"
+                                                       class="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"/>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <label for="status" class="text-sm font-medium">Status</label>
+
+                                                <select id="status"
+                                                        class="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                                                    <option>Dispached Out</option>
+                                                    <option>In Warehouse</option>
+                                                    <option>Being Brought In</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="mt-6 grid w-full grid-cols-2 justify-end space-x-4 md:flex">
+                                            <button class="btn btn-ghost">
+                                                Reset
+                                            </button>
+                                            <button class="btn btn-success">
+                                                Search
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div title="Results" class="flex flex-row gap-3 flex-wrap justify-center mt-5">
-                        <div title="job" class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
+                        <div title="job"
+                             class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
                             <div title="job head" class="flex flex-row gap-3 items-center mb-4">
                                 <img title="Job Image" class="rounded-[12px] w-12 h-12"
                                      src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
@@ -246,15 +297,18 @@
                                 </div>
                             </div>
                             <div title="Job Body" class="flex flex-col gap-4">
-                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
+                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias
+                                    necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
                                 <div class="flex flex-row gap-2">
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Full Time</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Design</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">On - Site</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-primary">Full Time</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-accent">Design</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-info-content">On - Site</span>
                                 </div>
                             </div>
                         </div>
-                        <div title="job" class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
+                        <div title="job"
+                             class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
                             <div title="job head" class="flex flex-row gap-3 items-center mb-4">
                                 <img title="Job Image" class="rounded-[12px] w-12 h-12"
                                      src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
@@ -274,15 +328,18 @@
                                 </div>
                             </div>
                             <div title="Job Body" class="flex flex-col gap-4">
-                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
+                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias
+                                    necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
                                 <div class="flex flex-row gap-2">
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Full Time</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Design</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">On - Site</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-error">Full Time</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-success">Design</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-warning">On - Site</span>
                                 </div>
                             </div>
                         </div>
-                        <div title="job" class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
+                        <div title="job"
+                             class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
                             <div title="job head" class="flex flex-row gap-3 items-center mb-4">
                                 <img title="Job Image" class="rounded-[12px] w-12 h-12"
                                      src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
@@ -302,15 +359,18 @@
                                 </div>
                             </div>
                             <div title="Job Body" class="flex flex-col gap-4">
-                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
+                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias
+                                    necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
                                 <div class="flex flex-row gap-2">
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Full Time</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Design</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">On - Site</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-error">Full Time</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-warning">Design</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-primary">On - Site</span>
                                 </div>
                             </div>
                         </div>
-                        <div title="job" class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
+                        <div title="job"
+                             class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
                             <div title="job head" class="flex flex-row gap-3 items-center mb-4">
                                 <img title="Job Image" class="rounded-[12px] w-12 h-12"
                                      src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
@@ -330,15 +390,18 @@
                                 </div>
                             </div>
                             <div title="Job Body" class="flex flex-col gap-4">
-                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
+                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias
+                                    necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
                                 <div class="flex flex-row gap-2">
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Full Time</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Design</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">On - Site</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-error">Full Time</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-secondary">Design</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-info">On - Site</span>
                                 </div>
                             </div>
                         </div>
-                        <div title="job" class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
+                        <div title="job"
+                             class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
                             <div title="job head" class="flex flex-row gap-3 items-center mb-4">
                                 <img title="Job Image" class="rounded-[12px] w-12 h-12"
                                      src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
@@ -358,15 +421,18 @@
                                 </div>
                             </div>
                             <div title="Job Body" class="flex flex-col gap-4">
-                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
+                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias
+                                    necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
                                 <div class="flex flex-row gap-2">
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Full Time</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Design</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">On - Site</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-error">Full Time</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-info">Design</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-success">On - Site</span>
                                 </div>
                             </div>
                         </div>
-                        <div title="job" class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
+                        <div title="job"
+                             class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
                             <div title="job head" class="flex flex-row gap-3 items-center mb-4">
                                 <img title="Job Image" class="rounded-[12px] w-12 h-12"
                                      src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
@@ -386,11 +452,13 @@
                                 </div>
                             </div>
                             <div title="Job Body" class="flex flex-col gap-4">
-                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
+                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias
+                                    necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
                                 <div class="flex flex-row gap-2">
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Full Time</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">Design</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-blue-500 font-semibold bg-blue-100">On - Site</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-primary">Full Time</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-error">Design</span>
+                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-success">On - Site</span>
                                 </div>
                             </div>
                         </div>
