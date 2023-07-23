@@ -53,6 +53,11 @@ INSTALLED_APPS = [
 	"theme",
 	"django_browser_reload",
 	"django_render_partial",
+	'allauth',
+	'allauth.account',
+	'allauth.socialaccount',
+	'allauth.socialaccount.providers.google',
+	'allauth.socialaccount.providers.github',
 	# internal apps
 	"pages"
 ]
@@ -146,3 +151,26 @@ INTERNAL_IPS = [
 ]
 # https://stackoverflow.com/questions/72033027/i-am-making-a-website-using-django-and-tailwind-css-but-in-cpanel-i-am-getting
 NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
+
+# django-allauth
+# https://django-allauth.readthedocs.io/en/latest/index.html
+AUTHENTICATION_BACKENDS = [
+	# Needed to login by username in Django admin, regardless of `allauth`
+	'django.contrib.auth.backends.ModelBackend',
+	# `allauth` specific authentication methods, such as login by e-mail
+	'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': '123',
+            'secret': '456',
+            'key': ''
+        }
+    }
+}

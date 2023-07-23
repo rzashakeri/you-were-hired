@@ -10,6 +10,7 @@ wheel==0.40.0
 django-environ==0.10.0
 django-tailwind==3.4.0
 django-render-partial==0.4
+django-allauth==0.54.0
 
 # Test
 pytest==7.4.0
