@@ -3,5 +3,10 @@ from django.views import View
 
 
 class JobsView(View):
-	def get(self, request):
-		return render(request, "jobs/jobs.html")
+    def get(self, request):
+        return render(request, "jobs/jobs.html")
+
+
+class JobView(View):
+    def get(self, request):
+        return render(request, "jobs/job.html")
