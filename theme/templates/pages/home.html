@@ -8,11 +8,14 @@
 {% block title %}
     {% translate 'You Were Hired' %}
 {% endblock %}
+{% block body_extra_class %}
+bg-[url('https://evilmartians.com/static/63e7e526915ba2f5bc9eb81c78faf880/a05e5/bg.jpg')] bg-cover bg-no-repeat bg-center
+{% endblock %}
 {% block content %}
-    <div class="w-full flex justify-center bg-gradient-to-b from-base-300 via-base-200 to-base-100">
+    <div class="w-full flex justify-center">
         <div class="flex flex-col items-center justify-center w-4/5 xl:my-20">
             <h1 id="home-title"
-                class="home my-9 text-[43px] sm:w-full sm:flex items-center justify-center sm:px-20 sm:text-[50px] font-['Anton'] font-bold mb-5">
+                class="home my-9 text-base-content text-[43px] sm:w-full sm:flex items-center justify-center sm:px-20 sm:text-[50px] font-['Anton'] font-bold mb-5">
             </h1>
             <form id="home-jobs-search-form" class="flex flex-col xl:flex-row bg-base-100 p-10 xl:p-3 rounded-lg mb-10 w-full">
                 <div class="flex flex-row items-center justify-center w-4/5">

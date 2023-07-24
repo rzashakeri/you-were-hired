@@ -1,6 +1,6 @@
 {% load i18n static %}
 <header id="header" class="sticky top-0 z-[99999]">
-    <div class="navbar bg-base-100 text-base-content bg-opacity-80 backdrop-blur shadow-sm transition-all duration-100">
+    <div class="navbar bg-base-100 text-base-content backdrop-blur-md bg-opacity-0 backdrop-blur transition-all duration-100">
         <div class="navbar-start">
             <div class="dropdown">
                 <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -12,13 +12,16 @@
                 </label>
                 <ul tabindex="0"
                     class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <div class="relative bg-base-200">
+                        <div class="border-t-[1px] border-l-[1px] border-base-200 left-[17px] absolute bottom-[7px] transform -translate-x-1/2 translate-y-1/2 rotate-45 w-4 h-4 bg-base-100"></div>
+                    </div>
                     <li><a>{% translate 'Find Jobs' %}</a></li>
                     <li><a>{% translate 'History' %}</a></li>
                     <li><a>{% translate 'Companies' %}</a></li>
                     <li class="min-[410px]:hidden"><a>{% translate 'Account' %}</a></li>
                 </ul>
             </div>
-            <a class="btn btn-ghost normal-case text-xl font-['Tektur']">You Where Hired</a>
+            <a class="btn btn-ghost text-base-content normal-case text-xl font-['Tektur']">You Where Hired</a>
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal rounded-box">
@@ -79,7 +82,7 @@
                 </div>
                 <div class="dropdown-content bg-base-200 text-base-content rounded-box top-[-10px] h-[70vh] max-h-96 w-56 shadow mt-16 z-50">
                     <div class="relative bg-base-200">
-                        <div class="border-t-[1px] border-l-[1px] border-bg-base-200 left-[196px] absolute bottom-0 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-4 h-4 bg-base-200"></div>
+                        <div class="border-t-[1px] border-l-[1px] border-base-200 left-[196px] absolute bottom-0 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-4 h-4 bg-base-200"></div>
                     </div>
                     <div class="grid grid-cols-1 gap-3 p-3 overflow-y-auto max-h-96" tabindex="0">
                     </div>
@@ -99,7 +102,7 @@
                 </div>
                 <div class="dropdown-content bg-base-200 text-base-content rounded-box top-[-10px] h-[70vh] max-h-96 w-56 shadow mt-16 z-50">
                     <div class="relative bg-base-200">
-                        <div class="border-t-[1px] border-l-[1px] border-bg-base-200 left-[196px] absolute bottom-0 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-4 h-4 bg-base-200"></div>
+                        <div class="border-t-[1px] border-l-[1px] border-base-200 left-[196px] absolute bottom-0 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-4 h-4 bg-base-200"></div>
                     </div>
                     <div class="grid grid-cols-1 gap-3 p-3 overflow-y-auto max-h-96" tabindex="0">
                     </div>
@@ -777,7 +780,7 @@
                 </div>
                 <div class="dropdown-content bg-base-200 text-base-content rounded-box top-[-10px] h-[70vh] max-h-96 w-56 shadow mt-16 z-50">
                     <div class="relative bg-base-200">
-                        <div class="border-t-[1px] border-l-[1px] border-bg-base-200 left-[196px] absolute bottom-0 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-4 h-4 bg-base-200"></div>
+                        <div class="border-t-[1px] border-l-[1px] border-base-200 left-[196px] absolute bottom-0 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-4 h-4 bg-base-200"></div>
                     </div>
                     <div class="grid grid-cols-1 gap-3 p-3 overflow-y-auto max-h-96" tabindex="0">
                     </div>

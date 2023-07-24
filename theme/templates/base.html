@@ -23,7 +23,7 @@
 
 
 </head>
-<body>
+<body class="{% block body_extra_class %}{% endblock %}">
 {% if messages %}
     {% for message in messages %}
         <div class="top-bar">
