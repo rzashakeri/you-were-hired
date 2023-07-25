@@ -1,47 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-
-@font-face
-{
+@font-face {
     font-family: 'Tektur';
     font-weight: 400;
     font-style: normal;
     src: url('./fonts/Tektur/static/Tektur-Regular.ttf');
 }
 
-@font-face
-{
+@font-face {
     font-family: 'Tektur';
     font-weight: 500;
     font-style: normal;
     src: url('./fonts/Tektur/static/Tektur-Medium.ttf');
 }
 
-@font-face
-{
+@font-face {
     font-family: 'Tektur';
     font-weight: 600;
     font-style: normal;
     src: url('./fonts/Tektur/static/Tektur-SemiBold.ttf');
 }
 
-@font-face
-{
+@font-face {
     font-family: 'Tektur';
     font-weight: 700;
     font-style: normal;
     src: url('./fonts/Tektur/static/Tektur-Bold.ttf');
 }
 
-@font-face
-{
+@font-face {
     font-family: 'Tektur';
     font-weight: 800;
     font-style: normal;
     src: url('./fonts/Tektur/static/Tektur-ExtraBold.ttf');
 }
 
-@font-face
-{
+@font-face {
     font-family: 'Tektur';
     font-weight: 900;
     font-style: normal;
@@ -49,9 +41,15 @@
 }
 
 
+@font-face {
+    font-family: 'Anton';
+    font-style: normal;
+    src: url('./fonts/Anton/Anton-Regular.ttf');
+}
 
-@media (prefers-color-scheme: dark){
-  :root{
-    --my-color: #252b30;
-  }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --my-color: #252b30;
+    }
 }
