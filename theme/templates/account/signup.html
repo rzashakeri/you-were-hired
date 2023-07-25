@@ -6,13 +6,14 @@
 {% block title %}{% translate "Sign Up" %}{% endblock %}
 
 {% block extra_javascript %}
-    <script src="{% static 'js/login.js' %}"></script>
+    <script src="{% static 'js/codex/jquery.codex.js' %}"></script>
+    <script src="{% static 'js/signup.js' %}"></script>
 {% endblock %}
 {% block content %}
     <div class="bg-base-200 p-10">
         <div class="w-full flex flex-col max-w-sm p-6 m-auto mx-auto bg-base-100 rounded-lg shadow-md">
-            <div title="logo" class="flex justify-center mx-auto">
-                <a class="btn btn-ghost normal-case text-2xl font-['Tektur']">You Where Hired</a>
+            <div title="logo" class="flex">
+                <a id="signup-logo" class=" font-semibold  normal-case text-2xl font-['Ubuntu']">Here's forbidden despair because no one is going to be rejected, let's go ... 😎</a>
             </div>
 
             <form class="mt-6 flex flex-col gap-3">
@@ -27,12 +28,13 @@
                 <div class="">
                     <div class="flex items-center justify-between">
                         <label for="password" class="block text-sm text-base-content mb-2">password</label>
-                        <a href="{% url 'account_reset_password' %}" class="link link-hover text-sm mb-2">Forget Password?</a>
+                        <a href="{% url 'account_reset_password' %}" class="link link-hover text-sm mb-2">Forget
+                            Password?</a>
                     </div>
                     <div class="relative">
-                        <input onkeyup="inputChange(this.value)" tabindex="-1" id="login-password-input" type="password"
+                        <input onkeyup="inputChange(this.value)" tabindex="-1" id="signup-password-input" type="password"
                                placeholder="password" class="w-full input input-bordered "/>
-                        <svg id="show-password-icon" onclick="showHidePassword('login-password-input')"
+                        <svg id="show-password-icon" onclick="showHidePassword('signup-password-input')"
                              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="bottom-3 right-3 absolute w-6 h-6 cursor-pointer">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -41,7 +43,7 @@
                                   d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                         </svg>
 
-                        <svg id="hide-password-icon" onclick="showHidePassword('login-password-input')"
+                        <svg id="hide-password-icon" onclick="showHidePassword('signup-password-input')"
                              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="hidden absolute bottom-3 right-3 w-6 h-6 cursor-pointer">
                             <path stroke-linecap="round" stroke-linejoin="round"
