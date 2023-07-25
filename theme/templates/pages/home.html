@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 {% load static i18n %}
 {% block extra_javascript %}
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+    <script src="{% static 'js/jquery/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/typeit/index.umd.js' %}"></script>
     <script src="{% static 'js/home.js' %}"></script>
 {% endblock %}
 {% block title %}
     {% translate 'You Were Hired' %}
 {% endblock %}
 {% block body_extra_class %}
-bg-[url('https://evilmartians.com/static/63e7e526915ba2f5bc9eb81c78faf880/a05e5/bg.jpg')] bg-cover bg-no-repeat bg-center
+    bg-[url('https://evilmartians.com/static/63e7e526915ba2f5bc9eb81c78faf880/a05e5/bg.jpg')] bg-cover bg-no-repeat
+    bg-center
 {% endblock %}
 {% block content %}
     <div class="w-full flex justify-center">
@@ -17,7 +18,8 @@ bg-[url('https://evilmartians.com/static/63e7e526915ba2f5bc9eb81c78faf880/a05e5/
             <h1 id="home-title"
                 class="home my-9 text-base-content text-[43px] sm:w-full sm:flex items-center justify-center sm:px-20 sm:text-[50px] font-['Anton'] font-bold mb-5">
             </h1>
-            <form id="home-jobs-search-form" class="flex flex-col xl:flex-row bg-base-100 p-10 xl:p-3 rounded-lg mb-10 w-full">
+            <form id="home-jobs-search-form"
+                  class="flex flex-col xl:flex-row bg-base-100 p-10 xl:p-3 rounded-lg mb-10 w-full">
                 <div class="flex flex-row items-center justify-center w-4/5">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-8 h-8">
@@ -31,7 +33,8 @@ bg-[url('https://evilmartians.com/static/63e7e526915ba2f5bc9eb81c78faf880/a05e5/
                 <div class="flex flex-row items-center justify-center w-4/5">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-8 h-8">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
                     </svg>
@@ -60,47 +63,6 @@ bg-[url('https://evilmartians.com/static/63e7e526915ba2f5bc9eb81c78faf880/a05e5/
                 </div>
                 <button class="btn btn-success capitalize">{% translate 'Search Job' %}</button>
             </form>
-        </div>
-    </div>
-    <div class="w-full flex flex-wrap">
-        <div class="w-full flex flex-row flex-wrap justify-between">
-            <div class="md:w-1/3 bg-base-100 border border-base-200">
-                <div class="card-body">
-                    <h2 class="card-title capitalize text-2xl">{% translate 'No Rejection' %}</h2>
-                    <p class="capitalize">{% translate 'Everyone is supposed to be hired here, no resumes are rejected here. Any ability you have is to use them and start earning money.' %}</p>
-                </div>
-            </div>
-            <div class="md:w-1/3 bg-base-100 border border-base-200">
-                <div class="card-body">
-                    <h2 class="card-title capitalize">{% translate 'Chat With Resume' %}</h2>
-                    <p class="capitalize">{% translate 'Artificial intelligence is here to help you make a better resume, In addition, we give your resume points and we have a lot of pre -built templates that you can build your own resume.' %}</p>
-
-                </div>
-            </div>
-            <div class="md:w-1/3 bg-base-100 border border-base-200">
-                <div class="card-body">
-                    <h2 class="card-title capitalize">{% translate 'ATS Friendly' %}</h2>
-                    <p class="capitalize">{% translate 'Using our resume maker, you have a resume that is readable for machine and increases your chances of hiring' %}</p>
-                </div>
-            </div>
-            <div class="md:w-1/3 bg-base-100 border border-base-200">
-                <div class="card-body">
-                    <h2 class="card-title capitalize">{% translate 'Make optimal resume' %}</h2>
-                    <p class="capitalize">{% translate 'Using our resume optimizer you increase your chances of hiring in the companies you like' %}</p>
-                </div>
-            </div>
-            <div class="md:w-1/3 bg-base-100 border border-base-200">
-                <div class="card-body">
-                    <h2 class="card-title capitalize">{% translate 'Job offers' %}</h2>
-                    <p class="capitalize">{% translate 'We are based on the skills you try to make suggestions for employment' %}</p>
-                </div>
-            </div>
-            <div class="md:w-1/3 bg-base-100 border border-base-200">
-                <div class="card-body">
-                    <h2 class="card-title capitalize">{% translate 'Interview Questions' %}</h2>
-                    <p class="capitalize">{% translate 'Are you ready for interview? You have to be ready because you are going to go to the job you love and you can read the recruitment interview questions in advance' %}</p>
-                </div>
-            </div>
         </div>
     </div>
 {% endblock %}
