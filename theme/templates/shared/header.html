@@ -21,7 +21,7 @@
                     <li class="min-[410px]:hidden"><a>{% translate 'Account' %}</a></li>
                 </ul>
             </div>
-            <a class="btn btn-ghost text-base-content normal-case text-xl font-['Tektur']">You Where Hired</a>
+            <a href="{% url 'home' %}" class="btn btn-ghost text-base-content normal-case text-xl font-bold font-['Tektur']">You Where Hired</a>
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal rounded-box">
@@ -89,7 +89,7 @@
                 </div>
             </div>
             <div title="Account" class="dropdown dropdown-end max-[432px]:hidden">
-                <div tabindex="0" class="btn normal-case btn-ghost">
+                <label tabindex="0" class="btn normal-case btn-ghost">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -99,14 +99,15 @@
                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
                         <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
                     </svg>
-                </div>
-                <div class="dropdown-content bg-base-200 text-base-content rounded-box top-[-10px] h-[70vh] max-h-96 w-56 shadow mt-16 z-50">
+                </label>
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52">
                     <div class="relative bg-base-200">
-                        <div class="border-t-[1px] border-l-[1px] border-base-200 left-[196px] absolute bottom-0 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-4 h-4 bg-base-200"></div>
+                        <div class="border-t-[1px] border-l-[1px] border-base-200 left-[175px] absolute bottom-[7px] transform -translate-x-1/2 translate-y-1/2 rotate-45 w-4 h-4 bg-base-200"></div>
                     </div>
-                    <div class="grid grid-cols-1 gap-3 p-3 overflow-y-auto max-h-96" tabindex="0">
-                    </div>
-                </div>
+                    <li><a href="{% url 'account_login' %}">{% translate 'Signin' %}</a></li>
+                    <li class="mt-2"><a href="{% url 'account_signup' %}">{% translate 'Signup' %}</a></li>
+                </ul>
             </div>
             <div title="Change Theme" class="dropdown dropdown-end max-[460px]:hidden">
                 <div tabindex="0" class="btn normal-case btn-ghost">
