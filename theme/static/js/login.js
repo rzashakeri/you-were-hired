@@ -73,19 +73,8 @@ function myFunction() {
 }
 
 
-function showHidePassword(targetID) {
-    let element = document.getElementById(targetID);
-    let showPasswordIcon = document.getElementById("show-password-icon");
-    let HidePasswordIcon = document.getElementById("hide-password-icon");
 
-    if (element.type === "password") {
-        element.type = "text";
-        showPasswordIcon.classList.add("hidden");
-        HidePasswordIcon.classList.remove("hidden");
-    } else {
-        element.type = "password";
-        showPasswordIcon.classList.remove("hidden");
-        HidePasswordIcon.classList.add("hidden");
-    }
-
-}
+new TypeIt("#login-logo", {
+    speed: 10,
+    waitUntilVisible: true,
+}).go();
