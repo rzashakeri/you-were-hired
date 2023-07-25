@@ -12,6 +12,7 @@ django-tailwind==3.4.0
 django-render-partial==0.4
 django-allauth==0.54.0
 django-birthday==0.1.4
+django-phone-field==1.8.1
 
 # Test
 pytest==7.4.0
