@@ -27,7 +27,7 @@
                 <div class="">
                     <div class="flex items-center justify-between">
                         <label for="password" class="block text-sm text-base-content mb-2">password</label>
-                        <a class="link link-hover text-sm mb-2">Forget Password?</a>
+                        <a href="{% url 'account_reset_password' %}" class="link link-hover text-sm mb-2">Forget Password?</a>
                     </div>
                     <div class="relative">
                         <input onkeyup="inputChange(this.value)" tabindex="-1" id="login-password-input" type="password"
