@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static i18n %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/animate/animate.min.css' %}">
+{% endblock %}
 {% block extra_javascript %}
     <script src="{% static 'js/jquery/jquery-1.12.4.min.js' %}"></script>
     <script src="{% static 'js/typeit/index.umd.js' %}"></script>
@@ -23,6 +26,9 @@
         </div>
         <div class="pointer-events-none absolute left-[850px] top-[40px] h-20 w-60 -translate-x-1/2 -translate-y-1/2">
             <div class="bg-warning/30 col-start-1 row-start-1 scale-[2] rounded-full blur-[5rem] w-32 h-32"></div>
+        </div>
+        <div class="pointer-events-none absolute right-[2000px] -top-[90px] h-20 w-60 -translate-x-1/2 -translate-y-1/2">
+            <div class="bg-secondary/10 col-start-1 row-start-1 scale-[2] rounded-full blur-[5rem] w-32 h-32"></div>
         </div>
         <div class="pointer-events-none absolute -right-[46px] top-[30px] h-20 w-60 -translate-x-1/2 -translate-y-1/2">
             <div class="bg-secondary-focus/40 col-start-1 row-start-1 scale-[2] rounded-full blur-[5rem] w-52 h-52"></div>
@@ -82,27 +88,27 @@
     </div>
     <div class="bg-base-100 p-5 pb-16">
         <div class="flex flex-row flex-wrap gap-5 relative items-center justify-center">
-            <div class="rounded-[30px] bg-primary text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
+            <div class="animate__animated animate__zoomInLeft rounded-[30px] glass bg-primary text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
                 <h3 class="text-[30px] font-bold">{% translate 'No Rejection' %}</h3>
                 <p class="capitalize ">{% translate 'Everyone is supposed to be hired here, no resumes are rejected here. Any ability you have is to use them and start earning money.' %}</p>
             </div>
-            <div class="rounded-[30px] bg-secondary text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
+            <div class="animate__animated animate__backInUp rounded-[30px] glass bg-secondary text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
                 <h3 class="text-[30px] font-bold">{% translate 'Chat With Resume' %}</h3>
                 <p class="capitalize ">{% translate 'Artificial intelligence is here to help you make a better resume, In addition, we give your resume points and we have a lot of pre -built templates that you can build your own resume.' %}</p>
             </div>
-            <div class="rounded-[30px] bg-accent text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
+            <div class="animate__animated animate__backInUp rounded-[30px] glass bg-accent text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
                 <h3 class="text-[30px] font-bold">{% translate 'ATS Friendly' %}</h3>
                 <p class="capitalize ">{% translate 'Using our resume maker, you have a resume that is readable for machine and increases your chances of hiring' %}</p>
             </div>
-            <div class="rounded-[30px] bg-info text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
+            <div class="animate__animated animate__zoomInRight rounded-[30px] glass bg-info text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
                 <h3 class="text-[30px] font-bold">{% translate 'Make optimal resume' %}</h3>
                 <p class="capitalize ">{% translate 'Using our resume optimizer you increase your chances of hiring in the companies you like' %}</p>
             </div>
-            <div class="rounded-[30px] bg-error text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
+            <div class="animate__animated animate__backInUp rounded-[30px] glass bg-error text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
                 <h3 class="text-[30px] font-bold">{% translate 'Job offers' %}</h3>
                 <p class="capitalize ">{% translate 'We are based on the skills you try to make suggestions for employment' %}</p>
             </div>
-            <div class="rounded-[30px] bg-neutral text-base-100  p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
+            <div class="animate__animated animate__backInUp rounded-[30px] glass bg-neutral text-base-100  p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
                 <h3 class="text-[30px] font-bold">{% translate 'Interview Questions' %}</h3>
                 <p class="capitalize ">{% translate 'Are you ready for interview? You have to be ready because you are going to go to the job you love and you can read the recruitment interview questions in advance' %}</p>
             </div>
