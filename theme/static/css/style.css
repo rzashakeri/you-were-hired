@@ -40,13 +40,32 @@
     src: url('./fonts/Tektur/static/Tektur-Black.ttf');
 }
 
-
 @font-face {
     font-family: 'Anton';
     font-style: normal;
     src: url('./fonts/Anton/Anton-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/Ubuntu/Ubuntu-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    src: url('./fonts/Ubuntu/Ubuntu-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./fonts/Ubuntu/Ubuntu-Bold.ttf');
+}
 
 @media (prefers-color-scheme: dark) {
     :root {
