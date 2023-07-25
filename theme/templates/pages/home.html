@@ -9,17 +9,31 @@
     {% translate 'You Were Hired' %}
 {% endblock %}
 {% block body_extra_class %}
-    bg-[url('https://evilmartians.com/static/63e7e526915ba2f5bc9eb81c78faf880/a05e5/bg.jpg')] bg-cover bg-no-repeat
-    bg-center
 {% endblock %}
 {% block content %}
-    <div class="w-full flex justify-center">
-        <div class="flex flex-col items-center justify-center w-4/5 xl:my-20">
+    <div class="w-full relative flex justify-center">
+        <div class="pointer-events-none absolute left-[100px] -top-[180px] h-20 w-60 -translate-x-1/2 -translate-y-1/2">
+            <div class="bg-primary/30 col-start-1 row-start-1 scale-[2] rounded-full blur-[5rem] w-52 h-52"></div>
+        </div>
+        <div class="pointer-events-none absolute left-[200px] top-[220px] h-20 w-60 -translate-x-1/2 -translate-y-1/2">
+            <div class="bg-warning/40 col-start-1 row-start-1 scale-[2] rounded-full blur-[5rem] w-20 h-20"></div>
+        </div>
+        <div class="pointer-events-none absolute left-[395px] top-[70px] h-20 w-60 -translate-x-1/2 -translate-y-1/2">
+            <div class="bg-accent/40 col-start-1 row-start-1 scale-[2] rounded-full blur-[5rem] w-52 h-52"></div>
+        </div>
+        <div class="pointer-events-none absolute left-[850px] top-[40px] h-20 w-60 -translate-x-1/2 -translate-y-1/2">
+            <div class="bg-warning/30 col-start-1 row-start-1 scale-[2] rounded-full blur-[5rem] w-32 h-32"></div>
+        </div>
+        <div class="pointer-events-none absolute -right-[46px] top-[30px] h-20 w-60 -translate-x-1/2 -translate-y-1/2">
+            <div class="bg-secondary-focus/40 col-start-1 row-start-1 scale-[2] rounded-full blur-[5rem] w-52 h-52"></div>
+            <div class="bg-primary/30 col-start-1 row-start-1 scale-[2] rounded-full blur-[5rem] w-52 h-52"></div>
+        </div>
+        <div class="flex flex-col items-center justify-center z-50 w-4/5 xl:my-20">
             <h1 id="home-title"
                 class="home my-9 text-base-content text-[43px] sm:w-full sm:flex items-center justify-center sm:px-20 sm:text-[50px] font-['Anton'] font-bold mb-5">
             </h1>
             <form id="home-jobs-search-form"
-                  class="flex flex-col xl:flex-row bg-base-100 p-10 xl:p-3 rounded-lg mb-10 w-full">
+                  class="flex flex-col xl:flex-row bg-base-100 drop-shadow-2xl p-10 xl:p-3 rounded-lg mb-10 w-full">
                 <div class="flex flex-row items-center justify-center w-4/5">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-8 h-8">
@@ -63,6 +77,35 @@
                 </div>
                 <button class="btn btn-success capitalize">{% translate 'Search Job' %}</button>
             </form>
+        </div>
+
+    </div>
+    <div class="bg-base-100 p-5 pb-16">
+        <div class="flex flex-row flex-wrap gap-5 relative items-center justify-center">
+            <div class="rounded-[30px] bg-primary text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
+                <h3 class="text-[30px] font-bold">{% translate 'No Rejection' %}</h3>
+                <p class="capitalize ">{% translate 'Everyone is supposed to be hired here, no resumes are rejected here. Any ability you have is to use them and start earning money.' %}</p>
+            </div>
+            <div class="rounded-[30px] bg-secondary text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
+                <h3 class="text-[30px] font-bold">{% translate 'Chat With Resume' %}</h3>
+                <p class="capitalize ">{% translate 'Artificial intelligence is here to help you make a better resume, In addition, we give your resume points and we have a lot of pre -built templates that you can build your own resume.' %}</p>
+            </div>
+            <div class="rounded-[30px] bg-accent text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
+                <h3 class="text-[30px] font-bold">{% translate 'ATS Friendly' %}</h3>
+                <p class="capitalize ">{% translate 'Using our resume maker, you have a resume that is readable for machine and increases your chances of hiring' %}</p>
+            </div>
+            <div class="rounded-[30px] bg-info text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
+                <h3 class="text-[30px] font-bold">{% translate 'Make optimal resume' %}</h3>
+                <p class="capitalize ">{% translate 'Using our resume optimizer you increase your chances of hiring in the companies you like' %}</p>
+            </div>
+            <div class="rounded-[30px] bg-error text-base-100 p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
+                <h3 class="text-[30px] font-bold">{% translate 'Job offers' %}</h3>
+                <p class="capitalize ">{% translate 'We are based on the skills you try to make suggestions for employment' %}</p>
+            </div>
+            <div class="rounded-[30px] bg-neutral text-base-100  p-7 max-w-xs max-h-96 flex flex-col gap-3 drop-shadow-2xl">
+                <h3 class="text-[30px] font-bold">{% translate 'Interview Questions' %}</h3>
+                <p class="capitalize ">{% translate 'Are you ready for interview? You have to be ready because you are going to go to the job you love and you can read the recruitment interview questions in advance' %}</p>
+            </div>
         </div>
     </div>
 {% endblock %}
