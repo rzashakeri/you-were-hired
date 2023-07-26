@@ -156,3 +156,18 @@ class Company(models.Model):
         db_table = "company"
         verbose_name = "company"
         verbose_name_plural = "companies"
+
+
+class CompanyImage(models.Model):
+    """Company Image Model"""
+
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='company/')
+    
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+
+        db_table = "company_image"
+        verbose_name = "company image"
+        verbose_name_plural = "company images"
