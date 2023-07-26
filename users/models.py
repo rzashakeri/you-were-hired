@@ -54,3 +54,32 @@ class JobSeekerProfile(models.Model):
     is_annually_monthly = models.BooleanField(default=False)
     currency = MoneyField(max_digits=14, decimal_places=2, default_currency="USD")
 
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+
+        db_table = "job_seeker"
+        verbose_name = "job seeker"
+        verbose_name_plural = "job_seekers"
+
+
+class EducationDetail(models.Model):
+    """Education Detail Model"""
+
+    # pylint: disable=too-few-public-methods
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    certificate_degree_name = models.CharField(max_length=255, null=True, blank=True)
+    major = models.CharField(max_length=255, null=True, blank=True)
+    institute_university_name = models.CharField(max_length=255, null=True, blank=True)
+    start_date = models.DateTimeField(null=True, blank=True)
+    completion_date = models.DateTimeField(null=True, blank=True)
+    percentage = models.IntegerField(null=True, blank=True)
+    cgpa = models.IntegerField(null=True, blank=True)
+
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+
+        db_table = "education_detail"
+        verbose_name = "education detail"
+        verbose_name_plural = "education details"
