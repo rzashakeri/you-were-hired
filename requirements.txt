@@ -15,6 +15,7 @@ django-birthday==0.1.4
 django-phone-field==1.8.1
 django-money==3.2.0
 Pillow==10.0.0
+file_validator==1.0.9
 
 # Test
 pytest==7.4.0
