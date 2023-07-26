@@ -61,3 +61,17 @@ class JobLocation(models.Model):
         verbose_name_plural = "job locations"
 
 
+class JobPostActivity(models.Model):
+    """Job Post-Activity Model"""
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    job = models.ForeignKey(JobPost, on_delete=models.CASCADE)
+    apply_date = models.DateTimeField()
+
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+    
+        db_table = "job_post_activity"
+        verbose_name = "job activity"
+        verbose_name_plural = "job activities"
