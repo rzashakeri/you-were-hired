@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from birthday import BirthdayField, BirthdayManager
 from phone_field import PhoneField
 from djmoney.models.fields import MoneyField
+from file_validator.models import ValidatedFileField
 
 
 class UserType(models.Model):
@@ -26,7 +27,13 @@ class User(AbstractUser):
     # pylint: disable=too-few-public-methods
 
     user_type = models.ForeignKey(UserType, on_delete=models.CASCADE)
-    user_image = models.ImageField(upload_to="user/profile/", null=True, blank=True)
+    user_image = ValidatedFileField(
+        libraries=["all"],
+        acceptable_mimes=["image/png"],
+        acceptable_types=["image"],
+        max_upload_file_size=10485760,
+        upload_to="user/profile/images/",
+    )
     full_name = models.CharField(max_length=200, null=True, blank=True)
     birthday = BirthdayField(null=True, blank=True)
     birthday_objects = BirthdayManager()
@@ -146,9 +153,16 @@ class Company(models.Model):
 
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
+    logo = ValidatedFileField(
+        libraries=["all"],
+        acceptable_mimes=["image/png"],
+        acceptable_types=["image"],
+        max_upload_file_size=10485760,
+        upload_to="company/logo/images/",
+    )
     establishment_date = models.DateTimeField()
     company_website_url = models.URLField()
-    
+
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
@@ -162,8 +176,14 @@ class CompanyImage(models.Model):
     """Company Image Model"""
 
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='company/')
-    
+    image = ValidatedFileField(
+        libraries=["all"],
+        acceptable_mimes=["image/png"],
+        acceptable_types=["image"],
+        max_upload_file_size=10485760,
+        upload_to="company/images/",
+    )
+
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
