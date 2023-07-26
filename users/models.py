@@ -7,11 +7,11 @@ from djmoney.models.fields import MoneyField
 
 class UserType(models.Model):
     """This Model To determine the user is a job-seeker or a recruiter"""
-
+    
     # pylint: disable=too-few-public-methods
-
+    
     user_type_name = models.CharField(max_length=100)
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
@@ -22,9 +22,9 @@ class UserType(models.Model):
 
 class User(AbstractUser):
     """User Model"""
-
+    
     # pylint: disable=too-few-public-methods
-
+    
     user_type = models.ForeignKey(UserType, on_delete=models.CASCADE)
     user_image = models.ImageField(upload_to="user/profile/", null=True, blank=True)
     full_name = models.CharField(max_length=200, null=True, blank=True)
@@ -35,11 +35,11 @@ class User(AbstractUser):
     sms_notification_active = models.BooleanField(default=False)
     email_notification_active = models.BooleanField(default=False)
     last_apply_job_date = models.DateTimeField(null=True, blank=True)
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         db_table = "user"
         verbose_name = "user"
         verbose_name_plural = "users"
@@ -47,25 +47,55 @@ class User(AbstractUser):
 
 class JobSeekerProfile(models.Model):
     """Job Seeker Profile Model"""
-
+    
     # pylint: disable=too-few-public-methods
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     current_salary = models.IntegerField()
     is_annually_monthly = models.BooleanField(default=False)
     currency = MoneyField(max_digits=14, decimal_places=2, default_currency="USD")
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         db_table = "job_seeker"
         verbose_name = "job seeker"
         verbose_name_plural = "job_seekers"
 
 
+class JobSeekerSkill(models.Model):
+    """JobSeeker Skill Model"""
+    
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    skill = models.ForeignKey("Skill", on_delete=models.CASCADE)
+    skill_level = models.IntegerField()
+    
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+        
+        db_table = "job_seeker_skill"
+        verbose_name = "job_seeker_skill"
+        verbose_name_plural = "job_seeker_skills"
+
+
+class Skill(models.Model):
+    """Skill Model"""
+    
+    skill_name = models.CharField(max_length=255, null=True, blank=True)
+    
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+        
+        db_table = "skill"
+        verbose_name = "skill"
+        verbose_name_plural = "skills"
+
+
 class EducationDetail(models.Model):
     """Education Detail Model"""
-
+    
     # pylint: disable=too-few-public-methods
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     certificate_degree_name = models.CharField(max_length=255, null=True, blank=True)
@@ -75,11 +105,11 @@ class EducationDetail(models.Model):
     completion_date = models.DateTimeField(null=True, blank=True)
     percentage = models.IntegerField(null=True, blank=True)
     cgpa = models.IntegerField(null=True, blank=True)
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         db_table = "education_detail"
         verbose_name = "education detail"
         verbose_name_plural = "education details"
@@ -87,7 +117,7 @@ class EducationDetail(models.Model):
 
 class ExperienceDetail(models.Model):
     """Experience Detail Model"""
-
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_current_job = models.BooleanField(default=False)
     start_date = models.DateTimeField(null=True, blank=True)
@@ -98,11 +128,11 @@ class ExperienceDetail(models.Model):
     job_location_state = models.CharField(max_length=255, null=True, blank=True)
     job_location_country = models.CharField(max_length=255, null=True, blank=True)
     description = models.CharField(max_length=255, null=True, blank=True)
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         db_table = "experience_detail"
         verbose_name = "experience detail"
         verbose_name_plural = "experience details"
