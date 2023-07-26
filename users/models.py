@@ -74,7 +74,6 @@ class SeekerSkill(models.Model):
     """JobSeeker Skill Model"""
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile = models.ForeignKey(SeekerProfile, on_delete=models.CASCADE)
     skill = models.ForeignKey("Skill", on_delete=models.CASCADE)
     skill_level = models.IntegerField()
 
@@ -85,6 +84,20 @@ class SeekerSkill(models.Model):
         db_table = "seeker_skill"
         verbose_name = "seeker_skill"
         verbose_name_plural = "seeker_skills"
+
+
+class SeekerLevel(models.Model):
+    """JobSeeker Level Model Such Senior | Mid-Level | Junior"""
+
+    name = models.CharField(max_length=255, null=True, blank=True)
+
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+
+        db_table = "seeker_level"
+        verbose_name = "seeker_level"
+        verbose_name_plural = "seeker_levels"
 
 
 class Skill(models.Model):
@@ -106,7 +119,6 @@ class EducationDetail(models.Model):
 
     # pylint: disable=too-few-public-methods
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile = models.ForeignKey(SeekerProfile, on_delete=models.CASCADE)
     certificate_degree_name = models.CharField(max_length=255, null=True, blank=True)
     major = models.CharField(max_length=255, null=True, blank=True)
     institute_university_name = models.CharField(max_length=255, null=True, blank=True)
@@ -128,7 +140,6 @@ class ExperienceDetail(models.Model):
     """Experience Detail Model"""
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile = models.ForeignKey(SeekerProfile, on_delete=models.CASCADE)
     is_current_job = models.BooleanField(default=False)
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
