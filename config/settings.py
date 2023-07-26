@@ -59,7 +59,8 @@ INSTALLED_APPS = [
 	'allauth.socialaccount.providers.google',
 	'allauth.socialaccount.providers.github',
 	# internal apps
-	"pages"
+	"pages",
+	"users"
 ]
 
 MIDDLEWARE = [
@@ -174,3 +175,5 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+AUTH_USER_MODEL = "users.User"

@@ -11,6 +11,9 @@ django-environ==0.10.0
 django-tailwind==3.4.0
 django-render-partial==0.4
 django-allauth==0.54.0
+django-birthday==0.1.4
+django-phone-field==1.8.1
+Pillow==10.0.0
 
 # Test
 pytest==7.4.0
