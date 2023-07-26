@@ -139,3 +139,20 @@ class ExperienceDetail(models.Model):
         db_table = "experience_detail"
         verbose_name = "experience detail"
         verbose_name_plural = "experience details"
+
+
+class Company(models.Model):
+    """Company Model"""
+
+    name = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    establishment_date = models.DateTimeField()
+    company_website_url = models.URLField()
+    
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+
+        db_table = "company"
+        verbose_name = "company"
+        verbose_name_plural = "companies"
