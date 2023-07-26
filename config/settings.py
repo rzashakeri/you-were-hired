@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.github",
     "djmoney",
     "smart_selects",
+    "cities_light",
     # internal apps
     "pages",
     "users",
