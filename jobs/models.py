@@ -8,6 +8,7 @@ from smart_selects.db_fields import ChainedForeignKey
 
 class JobType(models.Model):
     """Job Type Model"""
+    
     name = models.CharField(max_length=255)
     
     class Meta:
@@ -21,12 +22,13 @@ class JobType(models.Model):
 
 class JobPost(models.Model):
     """Job Post-Model"""
+    
     posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
     job_type = models.ForeignKey(JobType, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     created_date = models.DateTimeField()
     job_description = models.TextField()
-    job_location = models.ForeignKey('JobLocation', on_delete=models.CASCADE)
+    job_location = models.ForeignKey("JobLocation", on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
     
     class Meta:
@@ -40,7 +42,22 @@ class JobPost(models.Model):
 
 class JobLocation(models.Model):
     """Job Location Model"""
+    
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    region = ChainedForeignKey(Region, chained_field="country", chained_model_field="country")
-    city = ChainedForeignKey(City, chained_field="country", chained_model_field="country")
+    region = ChainedForeignKey(
+        Region, chained_field="country", chained_model_field="country"
+    )
+    city = ChainedForeignKey(
+        City, chained_field="country", chained_model_field="country"
+    )
     zip = models.CharField(max_length=100, null=True, blank=True)
+    
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+        
+        db_table = "job_location"
+        verbose_name = "job location"
+        verbose_name_plural = "job locations"
+
+
