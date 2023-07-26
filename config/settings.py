@@ -175,3 +175,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 AUTH_USER_MODEL = "users.User"
+
+# django smart select
+# https://django-smart-selects.readthedocs.io/en/latest/installation.html
+JQUERY_URL = True
