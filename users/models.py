@@ -83,3 +83,26 @@ class EducationDetail(models.Model):
         db_table = "education_detail"
         verbose_name = "education detail"
         verbose_name_plural = "education details"
+
+
+class ExperienceDetail(models.Model):
+    """Experience Detail Model"""
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_current_job = models.BooleanField(default=False)
+    start_date = models.DateTimeField(null=True, blank=True)
+    end_date = models.DateTimeField(null=True, blank=True)
+    job_title = models.CharField(max_length=255, null=True, blank=True)
+    company_name = models.CharField(max_length=255, null=True, blank=True)
+    job_location_city = models.CharField(max_length=255, null=True, blank=True)
+    job_location_state = models.CharField(max_length=255, null=True, blank=True)
+    job_location_country = models.CharField(max_length=255, null=True, blank=True)
+    description = models.CharField(max_length=255, null=True, blank=True)
+
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+
+        db_table = "experience_detail"
+        verbose_name = "experience detail"
+        verbose_name_plural = "experience details"
