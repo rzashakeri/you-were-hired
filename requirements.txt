@@ -13,6 +13,7 @@ django-render-partial==0.4
 django-allauth==0.54.0
 django-birthday==0.1.4
 django-phone-field==1.8.1
+django-money==3.2.0
 Pillow==10.0.0
 
 # Test
