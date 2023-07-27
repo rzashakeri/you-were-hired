@@ -3,8 +3,8 @@ from django.core.validators import (
     MaxValueValidator,
 )
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
+from utils.choices import LEVEL_CHOICES, GENDER_CHOICES
 from birthday import BirthdayField, BirthdayManager
 from phonenumber_field.modelfields import PhoneNumberField
 from djmoney.models.fields import MoneyField
@@ -15,46 +15,12 @@ from cities_light.models import Region
 from cities_light.models import Country
 
 
-GENDER_CHOICES = (
-    (0, _("Male")),
-    (1, _("Female")),
-    (2, _("Not Specified")),
-)
-
-LEVEL_CHOICES = (
-    (0, _("Senior")),
-    (1, _("Mid-Level")),
-    (2, _("Junior")),
-    (3, _("Intern")),
-    (4, _("Not Specified")),
-)
-
-
-class UserType(models.Model):
-    """This Model To determine the user is a job-seeker or a recruiter"""
+class JobSeeker(models.Model):
+    """JobSeeker Model"""
 
     # pylint: disable=too-few-public-methods
-
-    user_type_name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return str(self.user_type_name)
-
-    class Meta:
-        # pylint: disable=too-few-public-methods
-        # pylint: disable=missing-class-docstring
-        db_table = "user_type"
-        verbose_name = "user type"
-        verbose_name_plural = "user types"
-
-
-class User(AbstractUser):
-    """User Model"""
-
-    # pylint: disable=too-few-public-methods
-
-    user_type = models.ForeignKey(UserType, on_delete=models.CASCADE, null=True)
-    user_image = ValidatedFileField(
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    picture = ValidatedFileField(
         libraries=["all"],
         acceptable_mimes=["image/png"],
         acceptable_types=["image"],
@@ -63,74 +29,48 @@ class User(AbstractUser):
         null=True,
         blank=True,
     )
-    full_name = models.CharField(max_length=200, null=True, blank=True)
-    gender = models.IntegerField(choices=GENDER_CHOICES, default=2)
+    full_name = models.CharField(max_length=100, null=True, blank=True)
+    gender = models.CharField(
+        max_length=13, choices=GENDER_CHOICES, default="not specified"
+    )
     phone = PhoneNumberField(null=True, blank=True)
-    sms_notification_active = models.BooleanField(default=False)
-    email_notification_active = models.BooleanField(default=False)
     last_apply_job_date = models.DateTimeField(null=True, blank=True)
-
-    class Meta:
-        # pylint: disable=too-few-public-methods
-        # pylint: disable=missing-class-docstring
-
-        db_table = "user"
-        verbose_name = "user"
-        verbose_name_plural = "users"
-
-
-class SeekerProfile(models.Model):
-    """Job Seeker Profile Model"""
-
-    # pylint: disable=too-few-public-methods
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
     birthday = BirthdayField(null=True, blank=True)
     birthday_objects = BirthdayManager()
     current_salary = MoneyField(max_digits=14, decimal_places=2, default_currency="USD")
     is_annually_monthly = models.BooleanField(default=False)
-    currency = MoneyField(max_digits=14, decimal_places=2, default_currency="USD")
-    level = models.IntegerField(choices=LEVEL_CHOICES, default=4)
-
-    def __str__(self):
-        return f"{self.user.username}"
-
-    class Meta:
-        # pylint: disable=too-few-public-methods
-        # pylint: disable=missing-class-docstring
-
-        db_table = "seeker"
-        verbose_name = "seeker"
-        verbose_name_plural = "seekers"
-
-
-class SeekerSkill(models.Model):
-    """JobSeeker Skill Model"""
-
-    profile = models.ForeignKey(SeekerProfile, on_delete=models.CASCADE)
-    skill = models.ForeignKey("Skill", on_delete=models.CASCADE)
-    skill_level = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(10)], default=1
+    level = models.CharField(
+        max_length=13, choices=LEVEL_CHOICES, default="not specified"
     )
-
+    skill = models.ForeignKey(
+        "Skill", on_delete=models.CASCADE, related_name="job_seeker"
+    )
+    location = models.ForeignKey(
+        "Location", on_delete=models.CASCADE, related_name="job_seeker"
+    )
+    
     def __str__(self):
-        return f"{self.profile.user.username} | {self.skill.skill_name}"
-
+        return str(self.user.username)
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
 
-        db_table = "seeker_skill"
-        verbose_name = "seeker skill"
-        verbose_name_plural = "seeker skills"
-
+        db_table = "job_seeker"
+        verbose_name = "job seeker"
+        verbose_name_plural = "job seekers"
+    
 
 class Skill(models.Model):
     """Skill Model"""
 
-    skill_name = models.CharField(max_length=255, null=True, blank=True)
+    name = models.CharField(max_length=200, null=True, blank=True)
+    level = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(10)], default=1
+    )
 
     def __str__(self):
-        return str(self.skill_name)
+        return str(self.name)
 
     class Meta:
         # pylint: disable=too-few-public-methods
@@ -141,11 +81,11 @@ class Skill(models.Model):
         verbose_name_plural = "skills"
 
 
-class EducationDetail(models.Model):
-    """Education Detail Model"""
+class Education(models.Model):
+    """Education Model"""
 
     # pylint: disable=too-few-public-methods
-    profile = models.ForeignKey(SeekerProfile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(JobSeeker, on_delete=models.CASCADE)
     certificate_degree_name = models.CharField(max_length=255, null=True, blank=True)
     major = models.CharField(max_length=255, null=True, blank=True)
     institute_university_name = models.CharField(max_length=255, null=True, blank=True)
@@ -158,15 +98,15 @@ class EducationDetail(models.Model):
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
 
-        db_table = "education_detail"
-        verbose_name = "education detail"
-        verbose_name_plural = "education details"
+        db_table = "education"
+        verbose_name = "education"
+        verbose_name_plural = "educations"
 
 
-class ExperienceDetail(models.Model):
-    """Experience Detail Model"""
+class Experience(models.Model):
+    """Experience Model"""
 
-    profile = models.ForeignKey(SeekerProfile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(JobSeeker, on_delete=models.CASCADE)
     is_current_job = models.BooleanField(default=False)
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
@@ -181,9 +121,30 @@ class ExperienceDetail(models.Model):
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
 
-        db_table = "experience_detail"
-        verbose_name = "experience detail"
-        verbose_name_plural = "experience details"
+        db_table = "experience"
+        verbose_name = "experience"
+        verbose_name_plural = "experiences"
+
+
+class Location(models.Model):
+    """Location Model"""
+
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    region = ChainedForeignKey(
+        Region, chained_field="country", chained_model_field="country"
+    )
+    city = ChainedForeignKey(
+        City, chained_field="country", chained_model_field="country"
+    )
+    zip = models.CharField(max_length=100, null=True, blank=True)
+
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+
+        db_table = "location"
+        verbose_name = "location"
+        verbose_name_plural = "locations"
 
 
 class Company(models.Model):
@@ -201,13 +162,13 @@ class Company(models.Model):
         null=True,
         blank=True,
     )
-    location = models.ForeignKey("CompanyLocation", on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
     establishment_date = models.DateTimeField()
-    company_website_url = models.URLField()
+    website_url = models.URLField()
     is_verified = models.BooleanField(default=False)
     email = models.EmailField(null=True, blank=True)
     phone = PhoneNumberField(null=True, blank=True)
-
+    size = models.CharField(max_length=50)
 
     class Meta:
         # pylint: disable=too-few-public-methods
@@ -239,24 +200,3 @@ class CompanyImage(models.Model):
         db_table = "company_image"
         verbose_name = "company image"
         verbose_name_plural = "company images"
-
-
-class CompanyLocation(models.Model):
-    """Company Location Model"""
-
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    region = ChainedForeignKey(
-        Region, chained_field="country", chained_model_field="country"
-    )
-    city = ChainedForeignKey(
-        City, chained_field="country", chained_model_field="country"
-    )
-    zip = models.CharField(max_length=100, null=True, blank=True)
-
-    class Meta:
-        # pylint: disable=too-few-public-methods
-        # pylint: disable=missing-class-docstring
-
-        db_table = "company_location"
-        verbose_name = "company location"
-        verbose_name_plural = "company locations"
