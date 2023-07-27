@@ -73,7 +73,7 @@ class SeekerProfile(models.Model):
 class SeekerSkill(models.Model):
     """JobSeeker Skill Model"""
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(SeekerProfile, on_delete=models.CASCADE)
     skill = models.ForeignKey("Skill", on_delete=models.CASCADE)
     skill_level = models.IntegerField()
 
@@ -88,7 +88,7 @@ class SeekerSkill(models.Model):
 
 class SeekerLevel(models.Model):
     """JobSeeker Level Model Such Senior | Mid-Level | Junior"""
-
+    profile = models.OneToOneField(SeekerProfile, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
@@ -118,7 +118,7 @@ class EducationDetail(models.Model):
     """Education Detail Model"""
 
     # pylint: disable=too-few-public-methods
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(SeekerProfile, on_delete=models.CASCADE)
     certificate_degree_name = models.CharField(max_length=255, null=True, blank=True)
     major = models.CharField(max_length=255, null=True, blank=True)
     institute_university_name = models.CharField(max_length=255, null=True, blank=True)
@@ -139,7 +139,7 @@ class EducationDetail(models.Model):
 class ExperienceDetail(models.Model):
     """Experience Detail Model"""
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(SeekerProfile, on_delete=models.CASCADE)
     is_current_job = models.BooleanField(default=False)
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
@@ -161,7 +161,7 @@ class ExperienceDetail(models.Model):
 
 class Company(models.Model):
     """Company Model"""
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     logo = ValidatedFileField(
