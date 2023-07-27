@@ -4,6 +4,7 @@ from cities_light.models import Region
 from cities_light.models import Country
 from users.models import User, Company, Skill
 from smart_selects.db_fields import ChainedForeignKey
+from djmoney.models.fields import MoneyField
 
 
 class JobType(models.Model):
@@ -29,7 +30,13 @@ class JobPost(models.Model):
     created_date = models.DateTimeField()
     job_description = models.TextField()
     job_location = models.ForeignKey("JobLocation", on_delete=models.CASCADE)
+    job_category = models.ForeignKey("JobCategory", on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
+    min_required_experience = models.IntegerField()
+    max_required_experience = models.IntegerField()
+    is_no_work_experience = models.BooleanField(default=True)
+    job_seeker_level = models.CharField(max_length=255)
+    salary = MoneyField(max_digits=14, decimal_places=2, default_currency="USD", null=True, blank=True)
 
     class Meta:
         # pylint: disable=too-few-public-methods
@@ -61,7 +68,7 @@ class JobLocation(models.Model):
         verbose_name_plural = "job locations"
 
 
-class JobPostActivity(models.Model):
+class JobActivity(models.Model):
     """Job Post-Activity Model"""
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -77,7 +84,7 @@ class JobPostActivity(models.Model):
         verbose_name_plural = "job activities"
 
 
-class JobPostSkill(models.Model):
+class JobSkill(models.Model):
     """Job Post-Skill Model"""
 
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
@@ -91,3 +98,10 @@ class JobPostSkill(models.Model):
         db_table = "job_post_skill"
         verbose_name = "job skill"
         verbose_name_plural = "job skills"
+
+
+class JobCategory(models.Model):
+    """Job Category Model"""
+
+    name = models.CharField(max_length=255)
+    description = models.TextField()
