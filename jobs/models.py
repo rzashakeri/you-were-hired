@@ -1,21 +1,29 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from cities_light.models import City
 from cities_light.models import Region
 from cities_light.models import Country
-from users.models import User, Company, Skill
+from users.models import User, Company, Skill, LEVEL_CHOICES
 from smart_selects.db_fields import ChainedForeignKey
 from djmoney.models.fields import MoneyField
+from file_validator.models import ValidatedFileField
+
+STATUS_CHOICES = (
+    (0, _("Pending")),
+    (1, _("Seen")),
+    (2, _("Accepted")),
+)
 
 
 class JobType(models.Model):
     """Job Type Model"""
-
+    
     name = models.CharField(max_length=255)
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         db_table = "job_type"
         verbose_name = "job type"
         verbose_name_plural = "job types"
@@ -23,33 +31,64 @@ class JobType(models.Model):
 
 class JobPost(models.Model):
     """Job Post-Model"""
-
+    
     posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
     job_type = models.ForeignKey(JobType, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     created_date = models.DateTimeField()
+    expiry_date = models.DateTimeField()
     job_description = models.TextField()
     job_location = models.ForeignKey("JobLocation", on_delete=models.CASCADE)
     job_category = models.ForeignKey("JobCategory", on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
-    min_required_experience = models.IntegerField()
-    max_required_experience = models.IntegerField()
-    is_no_work_experience = models.BooleanField(default=True)
     job_seeker_level = models.CharField(max_length=255)
-    salary = MoneyField(max_digits=14, decimal_places=2, default_currency="USD", null=True, blank=True)
-
+    salary = MoneyField(
+        max_digits=14, decimal_places=2, default_currency="USD", null=True, blank=True
+    )
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         db_table = "job_post"
         verbose_name = "job post"
         verbose_name_plural = "job posts"
 
 
+class JobLevel(models.Model):
+    """Job Level Model"""
+    job = models.ForeignKey(JobPost, on_delete=models.CASCADE)
+    level = models.IntegerField(choices=LEVEL_CHOICES, default=4)
+
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+    
+        db_table = "job_level"
+        verbose_name = "job level"
+        verbose_name_plural = "job levels"
+
+
+class JobExperience(models.Model):
+    """Job Experience Model"""
+    
+    job = models.ForeignKey(JobPost, on_delete=models.CASCADE)
+    min_required_experience = models.IntegerField()
+    max_required_experience = models.IntegerField()
+    is_no_work_experience = models.BooleanField(default=True)
+    
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+        
+        db_table = "job_experience"
+        verbose_name = "job experience"
+        verbose_name_plural = "job experiences"
+
+
 class JobLocation(models.Model):
     """Job Location Model"""
-
+    
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     region = ChainedForeignKey(
         Region, chained_field="country", chained_model_field="country"
@@ -58,11 +97,11 @@ class JobLocation(models.Model):
         City, chained_field="country", chained_model_field="country"
     )
     zip = models.CharField(max_length=100, null=True, blank=True)
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         db_table = "job_location"
         verbose_name = "job location"
         verbose_name_plural = "job locations"
@@ -70,15 +109,15 @@ class JobLocation(models.Model):
 
 class JobActivity(models.Model):
     """Job Post-Activity Model"""
-
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     job = models.ForeignKey(JobPost, on_delete=models.CASCADE)
     apply_date = models.DateTimeField()
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         db_table = "job_post_activity"
         verbose_name = "job activity"
         verbose_name_plural = "job activities"
@@ -86,15 +125,15 @@ class JobActivity(models.Model):
 
 class JobSkill(models.Model):
     """Job Post-Skill Model"""
-
+    
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
     job_post = models.ForeignKey(JobPost, on_delete=models.CASCADE)
     skill_level = models.IntegerField()
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         db_table = "job_post_skill"
         verbose_name = "job skill"
         verbose_name_plural = "job skills"
@@ -102,6 +141,56 @@ class JobSkill(models.Model):
 
 class JobCategory(models.Model):
     """Job Category Model"""
-
+    
     name = models.CharField(max_length=255)
     description = models.TextField()
+    
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+        
+        db_table = "job_category"
+        verbose_name = "job category"
+        verbose_name_plural = "job categories"
+
+
+class JobRequest(models.Model):
+    """Job Request Model"""
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    job = models.ForeignKey(JobPost, on_delete=models.CASCADE)
+    request_date = models.DateTimeField(auto_now_add=True)
+    cover_letter = models.TextField()
+    resume = ValidatedFileField(
+        libraries=["all"],
+        acceptable_mimes=["application/pdf"],
+        max_upload_file_size=10485760,
+        upload_to="company/resume/",
+        null=True,
+        blank=True,
+    )
+    status = models.IntegerField(choices=STATUS_CHOICES, default=0)
+    
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+        
+        db_table = "job_request"
+        verbose_name = "job request"
+        verbose_name_plural = "job requests"
+
+
+class JobBookmark(models.Model):
+    """Job Bookmark Model"""
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    job = models.ForeignKey(JobPost, on_delete=models.CASCADE)
+    bookmark_date = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+        
+        db_table = "job_bookmark"
+        verbose_name = "job bookmark"
+        verbose_name_plural = "job bookmarks"
