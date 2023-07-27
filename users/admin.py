@@ -50,4 +50,4 @@ class ExperienceDetailAdmin(admin.ModelAdmin):
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
     """Experience Detail Admin"""
-    list_display = ["user", "name", "company_website_url"]
+    list_display = ["user", "name", "company_website_url", "is_verified"]
