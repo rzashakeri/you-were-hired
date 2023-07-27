@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "djmoney",
     "smart_selects",
     "cities_light",
+    "phonenumber_field",
     # internal apps
     "pages",
     "users",

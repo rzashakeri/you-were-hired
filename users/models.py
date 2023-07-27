@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from birthday import BirthdayField, BirthdayManager
-from phone_field import PhoneField
+from phonenumber_field.modelfields import PhoneNumberField
 from djmoney.models.fields import MoneyField
 from file_validator.models import ValidatedFileField
 
@@ -12,6 +12,9 @@ class UserType(models.Model):
     # pylint: disable=too-few-public-methods
 
     user_type_name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return str(self.user_type_name)
 
     class Meta:
         # pylint: disable=too-few-public-methods
@@ -26,19 +29,18 @@ class User(AbstractUser):
 
     # pylint: disable=too-few-public-methods
 
-    user_type = models.ForeignKey(UserType, on_delete=models.CASCADE)
+    user_type = models.ForeignKey(UserType, on_delete=models.CASCADE, null=True)
     user_image = ValidatedFileField(
         libraries=["all"],
         acceptable_mimes=["image/png"],
         acceptable_types=["image"],
         max_upload_file_size=10485760,
         upload_to="user/profile/images/",
+        null=True, blank=True
     )
     full_name = models.CharField(max_length=200, null=True, blank=True)
-    birthday = BirthdayField(null=True, blank=True)
-    birthday_objects = BirthdayManager()
     gender = None
-    phone = PhoneField(null=True, blank=True, help_text="Contact phone number")
+    phone = PhoneNumberField(null=True, blank=True)
     sms_notification_active = models.BooleanField(default=False)
     email_notification_active = models.BooleanField(default=False)
     last_apply_job_date = models.DateTimeField(null=True, blank=True)
@@ -57,6 +59,8 @@ class SeekerProfile(models.Model):
 
     # pylint: disable=too-few-public-methods
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    birthday = BirthdayField(null=True, blank=True)
+    birthday_objects = BirthdayManager()
     current_salary = models.IntegerField()
     is_annually_monthly = models.BooleanField(default=False)
     currency = MoneyField(max_digits=14, decimal_places=2, default_currency="USD")
@@ -73,7 +77,7 @@ class SeekerProfile(models.Model):
 class SeekerSkill(models.Model):
     """JobSeeker Skill Model"""
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(SeekerProfile, on_delete=models.CASCADE)
     skill = models.ForeignKey("Skill", on_delete=models.CASCADE)
     skill_level = models.IntegerField()
 
@@ -88,7 +92,7 @@ class SeekerSkill(models.Model):
 
 class SeekerLevel(models.Model):
     """JobSeeker Level Model Such Senior | Mid-Level | Junior"""
-
+    profile = models.OneToOneField(SeekerProfile, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
@@ -118,7 +122,7 @@ class EducationDetail(models.Model):
     """Education Detail Model"""
 
     # pylint: disable=too-few-public-methods
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(SeekerProfile, on_delete=models.CASCADE)
     certificate_degree_name = models.CharField(max_length=255, null=True, blank=True)
     major = models.CharField(max_length=255, null=True, blank=True)
     institute_university_name = models.CharField(max_length=255, null=True, blank=True)
@@ -139,7 +143,7 @@ class EducationDetail(models.Model):
 class ExperienceDetail(models.Model):
     """Experience Detail Model"""
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(SeekerProfile, on_delete=models.CASCADE)
     is_current_job = models.BooleanField(default=False)
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
@@ -161,7 +165,7 @@ class ExperienceDetail(models.Model):
 
 class Company(models.Model):
     """Company Model"""
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     logo = ValidatedFileField(
