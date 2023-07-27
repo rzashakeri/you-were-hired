@@ -1,5 +1,5 @@
 from django.contrib import admin
-from users.models import UserType, User, SeekerProfile, SeekerSkill
+from users.models import UserType, User, SeekerProfile, SeekerSkill, Skill
 
 
 @admin.register(User)
@@ -26,3 +26,8 @@ class SeekerProfileAdmin(admin.ModelAdmin):
 class SeekerSkillAdmin(admin.ModelAdmin):
     """Seeker Skill Admin"""
     list_display = ["profile", "skill"]
+
+
+@admin.register(Skill)
+class SkillAdmin(admin.ModelAdmin):
+    pass
