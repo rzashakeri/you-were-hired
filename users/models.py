@@ -1,6 +1,5 @@
 from django.core.validators import (
     MinValueValidator,
-    MaxLengthValidator,
     MaxValueValidator,
 )
 from django.db import models
@@ -10,6 +9,11 @@ from birthday import BirthdayField, BirthdayManager
 from phonenumber_field.modelfields import PhoneNumberField
 from djmoney.models.fields import MoneyField
 from file_validator.models import ValidatedFileField
+from smart_selects.db_fields import ChainedForeignKey
+from cities_light.models import City
+from cities_light.models import Region
+from cities_light.models import Country
+
 
 GENDER_CHOICES = (
     (0, _("Male")),
@@ -194,10 +198,16 @@ class Company(models.Model):
         acceptable_types=["image"],
         max_upload_file_size=10485760,
         upload_to="company/logo/images/",
+        null=True,
+        blank=True,
     )
+    location = models.ForeignKey("CompanyLocation", on_delete=models.CASCADE)
     establishment_date = models.DateTimeField()
     company_website_url = models.URLField()
     is_verified = models.BooleanField(default=False)
+    email = models.EmailField(null=True, blank=True)
+    phone = PhoneNumberField(null=True, blank=True)
+
 
     class Meta:
         # pylint: disable=too-few-public-methods
@@ -218,6 +228,8 @@ class CompanyImage(models.Model):
         acceptable_types=["image"],
         max_upload_file_size=10485760,
         upload_to="company/images/",
+        null=True,
+        blank=True,
     )
 
     class Meta:
@@ -227,3 +239,24 @@ class CompanyImage(models.Model):
         db_table = "company_image"
         verbose_name = "company image"
         verbose_name_plural = "company images"
+
+
+class CompanyLocation(models.Model):
+    """Company Location Model"""
+
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    region = ChainedForeignKey(
+        Region, chained_field="country", chained_model_field="country"
+    )
+    city = ChainedForeignKey(
+        City, chained_field="country", chained_model_field="country"
+    )
+    zip = models.CharField(max_length=100, null=True, blank=True)
+
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+
+        db_table = "company_location"
+        verbose_name = "company location"
+        verbose_name_plural = "company locations"
