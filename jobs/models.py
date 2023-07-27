@@ -127,6 +127,7 @@ class JobCategory(models.Model):
 
 class JobRequest(models.Model):
     """Job Request Model"""
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     job = models.ForeignKey(JobPost, on_delete=models.CASCADE)
     request_date = models.DateTimeField(auto_now_add=True)
@@ -148,3 +149,19 @@ class JobRequest(models.Model):
         db_table = "job_request"
         verbose_name = "job request"
         verbose_name_plural = "job requests"
+
+
+class JobBookmark(models.Model):
+    """Job Bookmark Model"""
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    job = models.ForeignKey(JobPost, on_delete=models.CASCADE)
+    bookmark_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+    
+        db_table = "job_bookmark"
+        verbose_name = "job bookmark"
+        verbose_name_plural = "job bookmarks"
