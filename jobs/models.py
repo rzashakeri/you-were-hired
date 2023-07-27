@@ -11,7 +11,6 @@ from utils.choices import (
     LEVEL_CHOICES,
     EXPERIENCE_CHOICES,
 )
-from smart_selects.db_fields import ChainedForeignKey
 from djmoney.models.fields import MoneyField
 from file_validator.models import ValidatedFileField
 from multiselectfield import MultiSelectField
@@ -51,7 +50,8 @@ class Job(models.Model):
         max_digits=14, decimal_places=2, default_currency="USD", null=True, blank=True
     )
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
-
+    slug = models.SlugField()
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
