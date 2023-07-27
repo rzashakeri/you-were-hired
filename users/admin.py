@@ -1,5 +1,5 @@
 from django.contrib import admin
-from users.models import UserType, User, SeekerProfile, SeekerSkill, Skill, EducationDetail
+from users.models import UserType, User, SeekerProfile, SeekerSkill, Skill, EducationDetail, ExperienceDetail
 
 
 @admin.register(User)
@@ -39,3 +39,9 @@ class SkillAdmin(admin.ModelAdmin):
 class EducationDetailAdmin(admin.ModelAdmin):
     """Education Detail Admin"""
     list_display = ["profile"]
+
+
+@admin.register(ExperienceDetail)
+class ExperienceDetailAdmin(admin.ModelAdmin):
+    """Experience Detail Admin"""
+    list_display = ["profile", "job_title", "company_name"]
