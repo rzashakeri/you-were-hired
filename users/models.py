@@ -120,7 +120,6 @@ class SeekerSkill(models.Model):
         verbose_name_plural = "seeker skills"
 
 
-
 class Skill(models.Model):
     """Skill Model"""
 
@@ -198,6 +197,7 @@ class Company(models.Model):
     )
     establishment_date = models.DateTimeField()
     company_website_url = models.URLField()
+    is_verified = models.BooleanField(default=False)
 
     class Meta:
         # pylint: disable=too-few-public-methods
