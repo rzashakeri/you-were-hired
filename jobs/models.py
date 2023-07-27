@@ -4,6 +4,7 @@ from cities_light.models import Region
 from cities_light.models import Country
 from users.models import User, Company, Skill
 from smart_selects.db_fields import ChainedForeignKey
+from djmoney.models.fields import MoneyField
 
 
 class JobType(models.Model):
@@ -35,6 +36,7 @@ class JobPost(models.Model):
     max_required_experience = models.IntegerField()
     is_no_work_experience = models.BooleanField(default=True)
     job_seeker_level = models.CharField(max_length=255)
+    salary = MoneyField(max_digits=14, decimal_places=2, default_currency="USD", null=True, blank=True)
 
     class Meta:
         # pylint: disable=too-few-public-methods
@@ -100,5 +102,6 @@ class JobSkill(models.Model):
 
 class JobCategory(models.Model):
     """Job Category Model"""
+
     name = models.CharField(max_length=255)
     description = models.TextField()
