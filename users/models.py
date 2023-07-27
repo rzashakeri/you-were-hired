@@ -12,17 +12,17 @@ from djmoney.models.fields import MoneyField
 from file_validator.models import ValidatedFileField
 
 GENDER_CHOICES = (
-    (0, _("male")),
-    (1, _("female")),
-    (2, _("not specified")),
+    (0, _("Male")),
+    (1, _("Female")),
+    (2, _("Not Specified")),
 )
 
 LEVEL_CHOICES = (
-    (0, _("senior")),
-    (1, _("mid-level")),
+    (0, _("Senior")),
+    (1, _("Mid-Level")),
     (2, _("Junior")),
-    (3, _("intern")),
-    (4, _("not specified")),
+    (3, _("Intern")),
+    (4, _("Not Specified")),
 )
 
 
@@ -119,20 +119,6 @@ class SeekerSkill(models.Model):
         verbose_name = "seeker skill"
         verbose_name_plural = "seeker skills"
 
-
-class SeekerLevel(models.Model):
-    """JobSeeker Level Model Such Senior | Mid-Level | Junior | Intern"""
-
-    profile = models.OneToOneField(SeekerProfile, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, null=True, blank=True)
-
-    class Meta:
-        # pylint: disable=too-few-public-methods
-        # pylint: disable=missing-class-docstring
-
-        db_table = "seeker_level"
-        verbose_name = "seeker level"
-        verbose_name_plural = "seeker levels"
 
 
 class Skill(models.Model):
