@@ -115,11 +115,11 @@ class JobCategory(models.Model):
     
     name = models.CharField(max_length=255)
     description = models.TextField()
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-    
+        
         db_table = "job_category"
         verbose_name = "job category"
         verbose_name_plural = "job categories"
@@ -140,3 +140,11 @@ class JobRequest(models.Model):
         blank=True,
     )
     status = models.IntegerField(choices=STATUS_CHOICES, default=0)
+    
+    class Meta:
+        # pylint: disable=too-few-public-methods
+        # pylint: disable=missing-class-docstring
+        
+        db_table = "job_request"
+        verbose_name = "job request"
+        verbose_name_plural = "job requests"
