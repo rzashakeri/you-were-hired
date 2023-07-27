@@ -1,15 +1,28 @@
+from django.core.validators import (
+    MinValueValidator,
+    MaxLengthValidator,
+    MaxValueValidator,
+)
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
 from birthday import BirthdayField, BirthdayManager
 from phonenumber_field.modelfields import PhoneNumberField
 from djmoney.models.fields import MoneyField
 from file_validator.models import ValidatedFileField
-from django.utils.translation import gettext_lazy as _
 
 GENDER_CHOICES = (
     (0, _("male")),
     (1, _("female")),
     (2, _("not specified")),
+)
+
+LEVEL_CHOICES = (
+    (0, _("senior")),
+    (1, _("mid-level")),
+    (2, _("Junior")),
+    (3, _("intern")),
+    (4, _("not specified")),
 )
 
 
@@ -69,12 +82,13 @@ class SeekerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birthday = BirthdayField(null=True, blank=True)
     birthday_objects = BirthdayManager()
-    current_salary = models.IntegerField()
+    current_salary = MoneyField(max_digits=14, decimal_places=2, default_currency="USD")
     is_annually_monthly = models.BooleanField(default=False)
     currency = MoneyField(max_digits=14, decimal_places=2, default_currency="USD")
+    level = models.IntegerField(choices=LEVEL_CHOICES, default=4)
 
     def __str__(self):
-        return str(self.user.username)
+        return f"{self.user.username}"
 
     class Meta:
         # pylint: disable=too-few-public-methods
@@ -90,19 +104,24 @@ class SeekerSkill(models.Model):
 
     profile = models.ForeignKey(SeekerProfile, on_delete=models.CASCADE)
     skill = models.ForeignKey("Skill", on_delete=models.CASCADE)
-    skill_level = models.IntegerField()
+    skill_level = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(10)], default=1
+    )
+
+    def __str__(self):
+        return f"{self.profile.user.username} | {self.skill.skill_name}"
 
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
 
         db_table = "seeker_skill"
-        verbose_name = "seeker_skill"
-        verbose_name_plural = "seeker_skills"
+        verbose_name = "seeker skill"
+        verbose_name_plural = "seeker skills"
 
 
 class SeekerLevel(models.Model):
-    """JobSeeker Level Model Such Senior | Mid-Level | Junior"""
+    """JobSeeker Level Model Such Senior | Mid-Level | Junior | Intern"""
 
     profile = models.OneToOneField(SeekerProfile, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, null=True, blank=True)
@@ -112,14 +131,17 @@ class SeekerLevel(models.Model):
         # pylint: disable=missing-class-docstring
 
         db_table = "seeker_level"
-        verbose_name = "seeker_level"
-        verbose_name_plural = "seeker_levels"
+        verbose_name = "seeker level"
+        verbose_name_plural = "seeker levels"
 
 
 class Skill(models.Model):
     """Skill Model"""
 
     skill_name = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.skill_name)
 
     class Meta:
         # pylint: disable=too-few-public-methods
