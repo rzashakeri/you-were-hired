@@ -4,6 +4,13 @@ from birthday import BirthdayField, BirthdayManager
 from phonenumber_field.modelfields import PhoneNumberField
 from djmoney.models.fields import MoneyField
 from file_validator.models import ValidatedFileField
+from django.utils.translation import gettext_lazy as _
+
+GENDER_CHOICES = (
+    (0, _("male")),
+    (1, _("female")),
+    (2, _("not specified")),
+)
 
 
 class UserType(models.Model):
@@ -12,7 +19,7 @@ class UserType(models.Model):
     # pylint: disable=too-few-public-methods
 
     user_type_name = models.CharField(max_length=100)
-    
+
     def __str__(self):
         return str(self.user_type_name)
 
@@ -36,10 +43,11 @@ class User(AbstractUser):
         acceptable_types=["image"],
         max_upload_file_size=10485760,
         upload_to="user/profile/images/",
-        null=True, blank=True
+        null=True,
+        blank=True,
     )
     full_name = models.CharField(max_length=200, null=True, blank=True)
-    gender = None
+    gender = models.IntegerField(choices=GENDER_CHOICES, default=2)
     phone = PhoneNumberField(null=True, blank=True)
     sms_notification_active = models.BooleanField(default=False)
     email_notification_active = models.BooleanField(default=False)
@@ -64,6 +72,9 @@ class SeekerProfile(models.Model):
     current_salary = models.IntegerField()
     is_annually_monthly = models.BooleanField(default=False)
     currency = MoneyField(max_digits=14, decimal_places=2, default_currency="USD")
+
+    def __str__(self):
+        return str(self.user.username)
 
     class Meta:
         # pylint: disable=too-few-public-methods
@@ -92,6 +103,7 @@ class SeekerSkill(models.Model):
 
 class SeekerLevel(models.Model):
     """JobSeeker Level Model Such Senior | Mid-Level | Junior"""
+
     profile = models.OneToOneField(SeekerProfile, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, null=True, blank=True)
 
@@ -165,6 +177,7 @@ class ExperienceDetail(models.Model):
 
 class Company(models.Model):
     """Company Model"""
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
