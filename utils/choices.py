@@ -2,23 +2,23 @@ from django.utils.translation import gettext_lazy as _
 
 # db constants =>
 GENDER_CHOICES = (
-    ("male", _("Male")),
-    ("female", _("Female")),
-    ("not specified", _("Not Specified")),
+    ("Male", _("Male")),
+    ("Female", _("Female")),
+    ("Not Specified", _("Not Specified")),
 )
 
 LEVEL_CHOICES = (
-    ("senior", _("Senior")),
-    ("mid-Level", _("Mid-Level")),
-    ("junior", _("Junior")),
-    ("intern", _("Intern")),
-    ("not specified", _("Not Specified")),
+    ("Senior", _("Senior")),
+    ("Mid-Level", _("Mid-Level")),
+    ("Junior", _("Junior")),
+    ("Intern", _("Intern")),
+    ("Not Specified", _("Not Specified")),
 )
 
 STATUS_CHOICES = (
-    ("pending", _("Pending")),
-    ("seen", _("Seen")),
-    ("accepted", _("Accepted")),
+    ("Pending", _("Pending")),
+    ("Seen", _("Seen")),
+    ("Accepted", _("Accepted")),
 )
 
 EXPERIENCE_CHOICES = (
@@ -26,7 +26,7 @@ EXPERIENCE_CHOICES = (
     ("1 - 2 Year", _("1 - 2 Year")),
     ("3 - 4 Year", _("3 - 4 Year")),
     ("5 - 6 Year", _("5 - 6 Year")),
-    ("Over 6 years", _("Over 6 years")),
+    ("Over 6 Years", _("Over 6 years")),
     ("No Experience", _("No Experience")),
 )
 
