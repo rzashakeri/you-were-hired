@@ -156,7 +156,7 @@ class Location(models.Model):
         Region, chained_field="country", chained_model_field="country"
     )
     city = ChainedForeignKey(
-        City, chained_field="country", chained_model_field="country"
+        City, chained_field="region", chained_model_field="region", null=True, blank=True
     )
     zip = models.CharField(max_length=100, null=True, blank=True)
     
@@ -201,6 +201,9 @@ class Company(models.Model):
     phone = PhoneNumberField(null=True, blank=True)
     size = models.CharField(max_length=50)
     social = models.ForeignKey(Social, on_delete=models.CASCADE, related_name="companies")
+    
+    def __str__(self):
+        return str(self.name)
     
     class Meta:
         # pylint: disable=too-few-public-methods
