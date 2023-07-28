@@ -22,17 +22,17 @@ STATUS_CHOICES = (
 )
 
 EXPERIENCE_CHOICES = (
-    (0, _("Under 1 Year")),
-    (1, _("1 - 2 Year")),
-    (2, _("3 - 4 Year")),
-    (3, _("5 - 6 Year")),
-    (4, _("Over 6 years")),
-    (5, _("No Experience")),
+    ("Under 1 Year", _("Under 1 Year")),
+    ("1 - 2 Year", _("1 - 2 Year")),
+    ("3 - 4 Year", _("3 - 4 Year")),
+    ("5 - 6 Year", _("5 - 6 Year")),
+    ("Over 6 years", _("Over 6 years")),
+    ("No Experience", _("No Experience")),
 )
 
 JOB_TYPE_CHOICES = (
-    (0, _("Full Time Jobs")),
-    (1, _("Part Time Jobs")),
-    (2, _("Contract Jobs")),
-    (3, _("Remote")),
+    ("Full Time Jobs", _("Full Time Jobs")),
+    ("Part Time Jobs", _("Part Time Jobs")),
+    ("Contract Jobs", _("Contract Jobs")),
+    ("Remote", _("Remote")),
 )
