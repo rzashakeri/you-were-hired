@@ -17,6 +17,7 @@ django-money==3.2.0
 django-cities-light==3.9.2
 django-smart-selects==1.6.0
 django-multiselectfield==0.1.12
+django-autoslug==1.9.9
 Pillow==10.0.0
 file_validator==1.0.9
 
