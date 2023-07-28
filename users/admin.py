@@ -4,7 +4,7 @@ from users.models import (
     Skill,
     Education,
     Experience,
-    Company,
+    Company, Location, Social,
 )
 
 
@@ -42,3 +42,15 @@ class CompanyAdmin(admin.ModelAdmin):
     """Experience Detail Admin"""
     
     list_display = ["user", "name", "website_url", "is_verified"]
+
+
+@admin.register(Location)
+class CompanyAdmin(admin.ModelAdmin):
+    """Company Admin"""
+    pass
+
+
+@admin.register(Social)
+class SocialAdmin(admin.ModelAdmin):
+    """Company Admin"""
+    pass
