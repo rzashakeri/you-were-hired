@@ -25,15 +25,15 @@ class Job(models.Model):
         max_choices=3,
         max_length=get_max_length(JOB_TYPE_CHOICES, None),
     )
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="job")
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="jobs")
     created_date = models.DateTimeField()
     expiry_date = models.DateTimeField()
     job_description = models.TextField()
     job_location = models.ForeignKey(
-        Location, on_delete=models.CASCADE, related_name="job"
+        Location, on_delete=models.CASCADE, related_name="jobs"
     )
     job_category = models.ForeignKey(
-        "JobCategory", on_delete=models.CASCADE, related_name="job"
+        "Category", on_delete=models.CASCADE, related_name="jobs"
     )
     is_active = models.BooleanField(default=True)
     level = MultiSelectField(
@@ -51,7 +51,7 @@ class Job(models.Model):
     )
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
     slug = models.SlugField()
-    
+
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
@@ -61,25 +61,24 @@ class Job(models.Model):
         verbose_name_plural = "jobs"
 
 
-class JobActivity(models.Model):
+class Activity(models.Model):
     """Job Activity Model"""
 
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="job_activity"
+        User, on_delete=models.CASCADE, related_name="job_activities"
     )
-    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name="job_activity")
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name="job_activities")
     apply_date = models.DateTimeField()
 
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
 
-        db_table = "job_activity"
         verbose_name = "job activity"
         verbose_name_plural = "job activities"
 
 
-class JobCategory(models.Model):
+class Category(models.Model):
     """Job Category Model"""
 
     name = models.CharField(max_length=255)
@@ -89,16 +88,15 @@ class JobCategory(models.Model):
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
 
-        db_table = "job_category"
         verbose_name = "job category"
         verbose_name_plural = "job categories"
 
 
-class JobRequest(models.Model):
+class Request(models.Model):
     """Job Request Model"""
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="requests")
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name="requests")
     request_date = models.DateTimeField(auto_now_add=True)
     cover_letter = models.TextField()
     resume = ValidatedFileField(
@@ -115,22 +113,20 @@ class JobRequest(models.Model):
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
 
-        db_table = "job_request"
         verbose_name = "job request"
         verbose_name_plural = "job requests"
 
 
-class JobBookmark(models.Model):
+class Bookmark(models.Model):
     """Job Bookmark Model"""
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bookmarks")
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name="bookmarks")
     bookmark_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
 
-        db_table = "job_bookmark"
         verbose_name = "job bookmark"
         verbose_name_plural = "job bookmarks"
