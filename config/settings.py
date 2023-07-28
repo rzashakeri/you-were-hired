@@ -39,16 +39,18 @@ DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = []
 
-# Application definition
-
-INSTALLED_APPS = [
+# APPS
+# ------------------------------------------------------------------------------
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # third party apps
+]
+
+THIRD_PARTY_APPS = [
     "tailwind",
     "theme",
     "django_browser_reload",
@@ -62,11 +64,15 @@ INSTALLED_APPS = [
     "smart_selects",
     "cities_light",
     "phonenumber_field",
-    # internal apps
-    "pages",
-    "users",
-    "jobs"
 ]
+
+LOCAL_APPS = [
+    "pages.apps.PagesConfig",
+    "users.apps.UsersConfig",
+    "jobs.apps.JobsConfig"
+]
+# https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -178,4 +184,4 @@ SOCIALACCOUNT_PROVIDERS = {
 
 # django smart select
 # https://django-smart-selects.readthedocs.io/en/latest/installation.html
-JQUERY_URL = True
+USE_DJANGO_JQUERY = True
