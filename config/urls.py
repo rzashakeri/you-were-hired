@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("", include("pages.urls")),
@@ -24,4 +26,4 @@ urlpatterns = [
     re_path(r'^chaining/', include('smart_selects.urls')),
     path("accounts/", include("allauth.urls")),
     path("__reload__/", include("django_browser_reload.urls")),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
