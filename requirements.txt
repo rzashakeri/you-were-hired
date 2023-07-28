@@ -19,8 +19,10 @@ django-smart-selects==1.6.0
 django-multiselectfield==0.1.12
 django-autoslug==1.9.9
 django-ckeditor==6.7.0
+django-ipware==5.0.0
 Pillow==10.0.0
 file_validator==1.0.9
+geoip2==4.7.0
 
 # Test
 pytest==7.4.0
