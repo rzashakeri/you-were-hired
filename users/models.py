@@ -17,7 +17,7 @@ from cities_light.models import Country
 
 class JobSeeker(models.Model):
     """JobSeeker Model"""
-
+    
     # pylint: disable=too-few-public-methods
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     picture = ValidatedFileField(
@@ -73,14 +73,14 @@ class JobSeeker(models.Model):
         null=True,
         blank=True,
     )
-
+    
     def __str__(self):
         return str(self.user.username)
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         db_table = "job_seeker"
         verbose_name = "job seeker"
         verbose_name_plural = "job seekers"
@@ -88,26 +88,26 @@ class JobSeeker(models.Model):
 
 class Skill(models.Model):
     """Skill Model"""
-
+    
     name = models.CharField(max_length=200, null=True, blank=True)
     level = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(10)], default=1
     )
-
+    
     def __str__(self):
         return str(self.name)
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         verbose_name = "skill"
         verbose_name_plural = "skills"
 
 
 class Education(models.Model):
     """Education Model"""
-
+    
     # pylint: disable=too-few-public-methods
     profile = models.ForeignKey(
         JobSeeker, on_delete=models.CASCADE, related_name="educations"
@@ -119,18 +119,18 @@ class Education(models.Model):
     completion_date = models.DateTimeField(null=True, blank=True)
     percentage = models.IntegerField(null=True, blank=True)
     cgpa = models.IntegerField(null=True, blank=True)
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         verbose_name = "education"
         verbose_name_plural = "educations"
 
 
 class Experience(models.Model):
     """Experience Model"""
-
+    
     profile = models.ForeignKey(
         JobSeeker, on_delete=models.CASCADE, related_name="experiences"
     )
@@ -143,18 +143,18 @@ class Experience(models.Model):
     job_location_state = models.CharField(max_length=255, null=True, blank=True)
     job_location_country = models.CharField(max_length=255, null=True, blank=True)
     description = models.CharField(max_length=255, null=True, blank=True)
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         verbose_name = "experience"
         verbose_name_plural = "experiences"
 
 
 class Location(models.Model):
     """Location Model"""
-
+    
     country = models.ForeignKey(
         Country, on_delete=models.CASCADE, related_name="locations"
     )
@@ -169,28 +169,31 @@ class Location(models.Model):
         blank=True,
     )
     zip = models.CharField(max_length=100, null=True, blank=True)
-
+    
     def __str__(self):
-        return f"{self.country} | {self.region}"
-
+        return f"{self.country}"
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         verbose_name = "location"
         verbose_name_plural = "locations"
 
 
 class Social(models.Model):
     """Social Model"""
-
+    
     name = models.CharField(max_length=100)
     url = models.URLField()
+    
+    def __str__(self):
+        return str(self.name)
 
 
 class Company(models.Model):
     """Company Model"""
-
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
@@ -215,21 +218,21 @@ class Company(models.Model):
     social = models.ForeignKey(
         Social, on_delete=models.CASCADE, related_name="companies"
     )
-
+    
     def __str__(self):
         return str(self.name)
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         verbose_name = "company"
         verbose_name_plural = "companies"
 
 
 class CompanyImage(models.Model):
     """Company Image Model"""
-
+    
     company = models.ForeignKey(
         Company, on_delete=models.CASCADE, related_name="company_images"
     )
@@ -242,10 +245,10 @@ class CompanyImage(models.Model):
         null=True,
         blank=True,
     )
-
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
-
+        
         verbose_name = "company image"
         verbose_name_plural = "company images"
