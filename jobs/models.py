@@ -17,6 +17,7 @@ from file_validator.models import ValidatedFileField
 from multiselectfield import MultiSelectField
 from multiselectfield.utils import get_max_length
 from autoslug import AutoSlugField
+from ckeditor.fields import RichTextField
 
 
 class Job(models.Model):
@@ -30,7 +31,7 @@ class Job(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="jobs")
     created_date = models.DateTimeField(auto_now_add=True)
     expiry_date = models.DateTimeField(default=datetime.now() + timedelta(days=30), null=True, blank=True)
-    description = models.TextField()
+    description = RichTextField()
     location = models.ForeignKey(
         Location, on_delete=models.CASCADE, related_name="jobs"
     )
