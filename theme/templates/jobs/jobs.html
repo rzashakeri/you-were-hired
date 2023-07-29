@@ -20,142 +20,163 @@
                     </div>
                 </div>
             </div>
-            <div title="{% translate 'Job Type' %}" onclick="collapse(this)" tabindex="0" class="collapse collapse-arrow collapse-open">
-                <div class="collapse-title text-lg font-medium">
-                    <div class="flex flex-row gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z"></path>
-                        </svg>
-                        <h2 class="text-base font-bold">{% translate 'Job Type' %}</h2>
+            <div class="flex flex-col">
+                <div title="{% translate 'Job Type' %}" onclick="collapse(this)" tabindex="0"
+                     class="collapse collapse-arrow collapse-open">
+                    <div class="collapse-title text-lg font-medium">
+                        <div class="flex flex-row gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z"></path>
+                            </svg>
+                            <h2 class="text-base font-bold">{% translate 'Job Type' %}</h2>
+                        </div>
+                    </div>
+                    <div class="collapse-content flex flex-col gap-2">
+                        <label class="cursor-pointer flex flex-row justify-between">
+                            <div class="flex flex-row gap-2 items-center">
+                                <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
+                                       value=""
+                                       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                <span class="label-text">{% translate 'Full Time Jobs' %}</span>
+                            </div>
+                            <span class="badge bg-slate-100">20</span>
+                        </label>
+                        <label class="cursor-pointer flex flex-row justify-between">
+                            <div class="flex flex-row gap-2 items-center">
+                                <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
+                                       value=""
+                                       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                <span class="label-text">{% translate 'Part - Time Jobs' %}</span>
+                            </div>
+                            <span class="badge bg-slate-100">20</span>
+                        </label>
+                        <label class="cursor-pointer flex flex-row justify-between">
+                            <div class="flex flex-row gap-2 items-center">
+                                <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
+                                       value=""
+                                       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                <span class="label-text">{% translate 'Contract Jobs' %}</span>
+                            </div>
+                            <span class="badge bg-slate-100">20</span>
+                        </label>
+                        <label class="cursor-pointer flex flex-row justify-between">
+                            <div class="flex flex-row gap-2 items-center">
+                                <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
+                                       value=""
+                                       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                <span class="label-text">{% translate 'Intern / Apprenticeship' %}</span>
+                            </div>
+                            <span class="badge bg-slate-100">20</span>
+                        </label>
                     </div>
                 </div>
-                <div class="collapse-content flex flex-col gap-2">
-                    <label class="cursor-pointer flex flex-row justify-between">
-                        <div class="flex flex-row gap-2 items-center">
-                            <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox" value=""
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                            <span class="label-text">{% translate 'Full Time Jobs' %}</span>
+                <div title="{% translate 'Experience' %}" onclick="collapse(this)" tabindex="0"
+                     class="collapse collapse-arrow collapse-open">
+                    <div class="collapse-title text-lg font-medium">
+                        <div class="flex flex-row gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"></path>
+                            </svg>
+                            <h2 class="text-base font-bold">{% translate 'Experience' %}</h2>
                         </div>
-                        <span class="badge bg-slate-100">20</span>
-                    </label>
-                    <label class="cursor-pointer flex flex-row justify-between">
-                        <div class="flex flex-row gap-2 items-center">
-                            <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox" value=""
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                            <span class="label-text">{% translate 'Part - Time Jobs' %}</span>
-                        </div>
-                        <span class="badge bg-slate-100">20</span>
-                    </label>
-                    <label class="cursor-pointer flex flex-row justify-between">
-                        <div class="flex flex-row gap-2 items-center">
-                            <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox" value=""
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                            <span class="label-text">{% translate 'Contract Jobs' %}</span>
-                        </div>
-                        <span class="badge bg-slate-100">20</span>
-                    </label>
-                    <label class="cursor-pointer flex flex-row justify-between">
-                        <div class="flex flex-row gap-2 items-center">
-                            <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox" value=""
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                            <span class="label-text">{% translate 'Intern / Apprenticeship' %}</span>
-                        </div>
-                        <span class="badge bg-slate-100">20</span>
-                    </label>
-                </div>
-            </div>
-            <div title="{% translate 'Experience' %}" onclick="collapse(this)" tabindex="0" class="collapse collapse-arrow collapse-open">
-                <div class="collapse-title text-lg font-medium">
-                    <div class="flex flex-row gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"></path>
-                        </svg>
-                        <h2 class="text-base font-bold">{% translate 'Experience' %}</h2>
+                    </div>
+                    <div class="collapse-content flex flex-col gap-2">
+                        <label class="cursor-pointer flex flex-row justify-between">
+                            <div class="flex flex-row gap-2 items-center">
+                                <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
+                                       value=""
+                                       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                <span class="label-text">{% translate 'Under 1 Year' %}</span>
+                            </div>
+                            <span class="badge bg-slate-100">20</span>
+                        </label>
+                        <label class="cursor-pointer flex flex-row justify-between">
+                            <div class="flex flex-row gap-2 items-center">
+                                <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
+                                       value=""
+                                       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                <span class="label-text">{% translate '1 - 2 Year' %}</span>
+                            </div>
+                            <span class="badge bg-slate-100">20</span>
+                        </label>
+                        <label class="cursor-pointer flex flex-row justify-between">
+                            <div class="flex flex-row gap-2 items-center">
+                                <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
+                                       value=""
+                                       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                <span class="label-text">{% translate '2 - 3 Year' %}</span>
+                            </div>
+                            <span class="badge bg-slate-100">20</span>
+                        </label>
+                        <label class="cursor-pointer flex flex-row justify-between">
+                            <div class="flex flex-row gap-2 items-center">
+                                <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
+                                       value=""
+                                       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                <span class="label-text">{% translate '3 - 4 Year' %}</span>
+                            </div>
+                            <span class="badge bg-slate-100">20</span>
+                        </label>
                     </div>
                 </div>
-                <div class="collapse-content flex flex-col gap-2">
-                    <label class="cursor-pointer flex flex-row justify-between">
-                        <div class="flex flex-row gap-2 items-center">
-                            <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox" value=""
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                            <span class="label-text">{% translate 'Under 1 Year' %}</span>
+                <div title="{% translate 'Education' %}" onclick="collapse(this)" tabindex="0"
+                     class="collapse collapse-arrow  collapse-open">
+                    <div class="collapse-title text-lg font-medium">
+                        <div class="flex flex-row gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"></path>
+                            </svg>
+                            <h2 class="text-base font-bold">{% translate 'Education' %}</h2>
                         </div>
-                        <span class="badge bg-slate-100">20</span>
-                    </label>
-                    <label class="cursor-pointer flex flex-row justify-between">
-                        <div class="flex flex-row gap-2 items-center">
-                            <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox" value=""
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                            <span class="label-text">{% translate '1 - 2 Year' %}</span>
-                        </div>
-                        <span class="badge bg-slate-100">20</span>
-                    </label>
-                    <label class="cursor-pointer flex flex-row justify-between">
-                        <div class="flex flex-row gap-2 items-center">
-                            <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox" value=""
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                            <span class="label-text">{% translate '2 - 3 Year' %}</span>
-                        </div>
-                        <span class="badge bg-slate-100">20</span>
-                    </label>
-                    <label class="cursor-pointer flex flex-row justify-between">
-                        <div class="flex flex-row gap-2 items-center">
-                            <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox" value=""
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                            <span class="label-text">{% translate '3 - 4 Year' %}</span>
-                        </div>
-                        <span class="badge bg-slate-100">20</span>
-                    </label>
-                </div>
-            </div>
-            <div title="{% translate 'Education' %}" onclick="collapse(this)" tabindex="0" class="collapse collapse-arrow  collapse-open">
-                <div class="collapse-title text-lg font-medium">
-                    <div class="flex flex-row gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"></path>
-                        </svg>
-                        <h2 class="text-base font-bold">{% translate 'Education' %}</h2>
+                    </div>
+                    <div class="collapse-content flex flex-col gap-2">
+                        <label class="cursor-pointer flex flex-row justify-between">
+                            <div class="flex flex-row gap-2 items-center">
+                                <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
+                                       value=""
+                                       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                <span class="label-text">{% translate 'Full Time Jobs' %}</span>
+                            </div>
+                            <span class="badge bg-slate-100">20</span>
+                        </label>
+                        <label class="cursor-pointer flex flex-row justify-between">
+                            <div class="flex flex-row gap-2 items-center">
+                                <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
+                                       value=""
+                                       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                <span class="label-text">{% translate 'Part - Time Jobs' %}</span>
+                            </div>
+                            <span class="badge bg-slate-100">20</span>
+                        </label>
+                        <label class="cursor-pointer flex flex-row justify-between">
+                            <div class="flex flex-row gap-2 items-center">
+                                <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
+                                       value=""
+                                       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                <span class="label-text">{% translate 'Contract Jobs' %}</span>
+                            </div>
+                            <span class="badge bg-slate-100">20</span>
+                        </label>
+                        <label class="cursor-pointer flex flex-row justify-between">
+                            <div class="flex flex-row gap-2 items-center">
+                                <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
+                                       value=""
+                                       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                <span class="label-text">{% translate 'Intern / Apprenticeship' %}</span>
+                            </div>
+                            <span class="badge bg-slate-100">20</span>
+                        </label>
                     </div>
                 </div>
-                <div class="collapse-content flex flex-col gap-2">
-                    <label class="cursor-pointer flex flex-row justify-between">
-                        <div class="flex flex-row gap-2 items-center">
-                            <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox" value=""
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                            <span class="label-text">{% translate 'Full Time Jobs' %}</span>
-                        </div>
-                        <span class="badge bg-slate-100">20</span>
-                    </label>
-                    <label class="cursor-pointer flex flex-row justify-between">
-                        <div class="flex flex-row gap-2 items-center">
-                            <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox" value=""
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                            <span class="label-text">{% translate 'Part - Time Jobs' %}</span>
-                        </div>
-                        <span class="badge bg-slate-100">20</span>
-                    </label>
-                    <label class="cursor-pointer flex flex-row justify-between">
-                        <div class="flex flex-row gap-2 items-center">
-                            <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox" value=""
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                            <span class="label-text">{% translate 'Contract Jobs' %}</span>
-                        </div>
-                        <span class="badge bg-slate-100">20</span>
-                    </label>
-                    <label class="cursor-pointer flex flex-row justify-between">
-                        <div class="flex flex-row gap-2 items-center">
-                            <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox" value=""
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                            <span class="label-text">{% translate 'Intern / Apprenticeship' %}</span>
-                        </div>
-                        <span class="badge bg-slate-100">20</span>
-                    </label>
+                <div class="flex flex-row gap-3 items-center mt-3 mx-3">
+                    <button class="btn btn-success flex-auto">Filter</button>
+                    <button class="btn btn-active btn-ghost">Reset</button>
                 </div>
             </div>
         </div>
@@ -169,7 +190,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                       d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
                             </svg>
-                            <input type="text" placeholder="Job Title"
+                            <input type="text" placeholder="What"
                                    class="input w-full pr-16 focus:outline-none border-none focus:ring-0"/>
                         </div>
                         <div class="divider lg:divider-horizontal"></div>
@@ -181,7 +202,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                       d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
                             </svg>
-                            <input type="text" placeholder="Location"
+                            <input type="text" placeholder="Where"
                                    class="input w-full pr-16 focus:outline-none border-none focus:ring-0"/>
                         </div>
                         <div class="divider lg:divider-horizontal"></div>
@@ -191,7 +212,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                       d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
                             </svg>
-                            <input type="text" placeholder="Remote"
+                            <input type="text" placeholder="How"
                                    class="input w-full pr-16 focus:outline-none border-none focus:ring-0"/>
                         </div>
                         <div class="divider lg:divider-horizontal"></div>
@@ -201,7 +222,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                       d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
                             </svg>
-                            <input type="text" placeholder="Freelance"
+                            <input type="text" placeholder="With / No"
                                    class="input w-full pr-16 focus:outline-none border-none focus:ring-0"/>
                         </div>
                         <button class="btn btn-success capitalize">{% translate 'Search Job' %}</button>
@@ -211,7 +232,7 @@
                     <div class="flex flex-row justify-between items-center flex-wrap gap-4">
                         <div title="Result Count" class="flex fle-row">
                             <p class="">{% translate 'Showing:' %} <span
-                                    class="font-bold">1,902 </span>{% translate 'Filtered Jobs' %}</p>
+                                    class="font-bold">{{ jobs.count }} </span>{% translate 'Filtered Jobs' %}</p>
                         </div>
                         <div title="Sort By" class="max-xl:hidden flex flex-row gap-3 items-center">
                             <p>{% translate 'Sort By:' %}</p>
@@ -275,193 +296,53 @@
                             </div>
                         </div>
                     </div>
-                    <div title="Results" class="flex flex-row gap-3 flex-wrap justify-center mt-5">
-                        <div title="job"
-                             class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
-                            <div title="job head" class="flex flex-row gap-3 items-center mb-4">
-                                <img title="Job Image" class="rounded-[12px] w-12 h-12"
-                                     src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
-                                     alt="">
-                                <div class="flex flex-col gap-1">
-                                    <p class="font-bold">Senior UI Designer</p>
-                                    <div class="flex flex-row gap-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-                                        </svg>
-                                        <span>Tehran, Iran</span>
+                    <div title="Results" class="flex flex-row gap-3 flex-wrap justify-center my-5">
+                        {% for job in jobs %}
+                            <div title="job"
+                                 class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
+                                <div title="job head" class="flex flex-row gap-3 items-center mb-4">
+                                    {% if job.company.logo %}
+                                        <img title="Job Logo" class="rounded-[12px] w-12 h-12"
+                                             src="{{ job.company.logo.url }}"
+                                             alt="{{ job.company.name }}">
+                                    {% else %}
+                                        <div class="avatar placeholder">
+                                            <div class="bg-neutral-focus text-neutral-content rounded-[12px] w-16">
+                                                <span class="text-xl">{{ job.company.name|slice:1 }}</span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    <div class="flex flex-col gap-1">
+                                        <a href="" class="font-bold">{{ job.title }}</a>
+                                        <div class="flex flex-row gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+                                            </svg>
+                                            <span>{{ job.location.region }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div title="Job Body" class="flex flex-col gap-4">
+                                    <div class="line-clamp-3 mt-2">{{ job.description|safe }}</div>
+                                    <div class="flex flex-row gap-2 flex-wrap">
+                                        {% for level in job.level.all %}
+                                            <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-base-300 text-base-content">{{ level.name }}</span>
+                                        {% endfor %}
+                                        {% for type in  job.type.all %}
+                                            <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-base-300 text-base-content">{{ type.name }}</span>
+                                        {% endfor %}
+                                        {% for experience in job.experience.all %}
+                                            <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-base-300 text-base-content">{{ experience.value }}</span>
+                                        {% endfor %}
+                                        <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-success text-base-100">{{ job.salary }}</span>
                                     </div>
                                 </div>
                             </div>
-                            <div title="Job Body" class="flex flex-col gap-4">
-                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias
-                                    necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
-                                <div class="flex flex-row gap-2">
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-primary">Full Time</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-accent">Design</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-info-content">On - Site</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div title="job"
-                             class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
-                            <div title="job head" class="flex flex-row gap-3 items-center mb-4">
-                                <img title="Job Image" class="rounded-[12px] w-12 h-12"
-                                     src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
-                                     alt="">
-                                <div class="flex flex-col gap-1">
-                                    <p class="font-bold">Senior UI Designer</p>
-                                    <div class="flex flex-row gap-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-                                        </svg>
-                                        <span>Tehran, Iran</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div title="Job Body" class="flex flex-col gap-4">
-                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias
-                                    necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
-                                <div class="flex flex-row gap-2">
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-error">Full Time</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-success">Design</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-warning">On - Site</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div title="job"
-                             class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
-                            <div title="job head" class="flex flex-row gap-3 items-center mb-4">
-                                <img title="Job Image" class="rounded-[12px] w-12 h-12"
-                                     src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
-                                     alt="">
-                                <div class="flex flex-col gap-1">
-                                    <p class="font-bold">Senior UI Designer</p>
-                                    <div class="flex flex-row gap-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-                                        </svg>
-                                        <span>Tehran, Iran</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div title="Job Body" class="flex flex-col gap-4">
-                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias
-                                    necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
-                                <div class="flex flex-row gap-2">
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-error">Full Time</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-warning">Design</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-primary">On - Site</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div title="job"
-                             class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
-                            <div title="job head" class="flex flex-row gap-3 items-center mb-4">
-                                <img title="Job Image" class="rounded-[12px] w-12 h-12"
-                                     src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
-                                     alt="">
-                                <div class="flex flex-col gap-1">
-                                    <p class="font-bold">Senior UI Designer</p>
-                                    <div class="flex flex-row gap-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-                                        </svg>
-                                        <span>Tehran, Iran</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div title="Job Body" class="flex flex-col gap-4">
-                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias
-                                    necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
-                                <div class="flex flex-row gap-2">
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-error">Full Time</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-secondary">Design</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-info">On - Site</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div title="job"
-                             class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
-                            <div title="job head" class="flex flex-row gap-3 items-center mb-4">
-                                <img title="Job Image" class="rounded-[12px] w-12 h-12"
-                                     src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
-                                     alt="">
-                                <div class="flex flex-col gap-1">
-                                    <p class="font-bold">Senior UI Designer</p>
-                                    <div class="flex flex-row gap-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-                                        </svg>
-                                        <span>Tehran, Iran</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div title="Job Body" class="flex flex-col gap-4">
-                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias
-                                    necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
-                                <div class="flex flex-row gap-2">
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-error">Full Time</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-info">Design</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-success">On - Site</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div title="job"
-                             class="max-md:w-full flex-auto w-[22rem] bg-base-100 p-5 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
-                            <div title="job head" class="flex flex-row gap-3 items-center mb-4">
-                                <img title="Job Image" class="rounded-[12px] w-12 h-12"
-                                     src="https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png"
-                                     alt="">
-                                <div class="flex flex-col gap-1">
-                                    <p class="font-bold">Senior UI Designer</p>
-                                    <div class="flex flex-row gap-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-                                        </svg>
-                                        <span>Tehran, Iran</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div title="Job Body" class="flex flex-col gap-4">
-                                <p class="line-clamp-3 mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    atque aut dignissimos ducimus ea, earum, facere hic inventore, ipsa molestias
-                                    necessitatibus nihil officia porro possimus quaerat quasi saepe sit ullam!</p>
-                                <div class="flex flex-row gap-2">
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-primary">Full Time</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-error">Design</span>
-                                    <span class="px-1.5 py-1 rounded text-sm text-base-100 font-semibold bg-success">On - Site</span>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

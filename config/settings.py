@@ -19,8 +19,6 @@ env = environ.Env(
     DEBUG=(bool, False)
 )
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -47,6 +45,7 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.gis.geoip2",
 ]
 
 THIRD_PARTY_APPS = [
@@ -164,7 +163,6 @@ STATICFILES_FINDERS = [
 MEDIA_ROOT = str(BASE_DIR / "media")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = "/media/"
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -347,3 +345,5 @@ CKEDITOR_CONFIGS = {
         ),
     }
 }
+
+GEOIP_PATH = str(BASE_DIR / "geoip")

@@ -22,41 +22,27 @@ from ckeditor.fields import RichTextField
 
 class Job(models.Model):
     """Job Model"""
+
     title = models.CharField(max_length=100)
-    type = MultiSelectField(
-        choices=JOB_TYPE_CHOICES,
-        max_choices=3,
-        max_length=get_max_length(JOB_TYPE_CHOICES, None),
-    )
+    type = models.ManyToManyField("Type")
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="jobs")
     created_date = models.DateTimeField(auto_now_add=True)
-    expiry_date = models.DateTimeField(default=datetime.now() + timedelta(days=30), null=True, blank=True)
+    expiry_date = models.DateTimeField(null=True, blank=True)
     description = RichTextField()
-    location = models.ForeignKey(
-        Location, on_delete=models.CASCADE, related_name="jobs"
-    )
-    category = models.ManyToManyField(
-        "Category",
-    )
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="jobs")
+    category = models.ManyToManyField("Category")
     is_active = models.BooleanField(default=True)
-    level = MultiSelectField(
-        choices=LEVEL_CHOICES,
-        max_choices=3,
-        max_length=get_max_length(LEVEL_CHOICES, None),
-    )
-    experience = MultiSelectField(
-        choices=EXPERIENCE_CHOICES,
-        max_choices=3,
-        max_length=get_max_length(EXPERIENCE_CHOICES, None),
-    )
-    salary = MoneyField(
-        max_digits=14, decimal_places=2, default_currency="USD", null=True, blank=True
-    )
+    level = models.ManyToManyField("Level")
+    experience = models.ManyToManyField("Experience")
+    salary = models.ForeignKey("Salary", on_delete=models.CASCADE, related_name="jobs")
     skill = models.ManyToManyField(Skill)
-    slug = AutoSlugField(populate_from='title')
+    slug = AutoSlugField(populate_from="title")
     
     def __str__(self):
         return f"{self.title} | {self.company}"
+    
+    def get_absolute_url(self):
+        pass
     
     class Meta:
         # pylint: disable=too-few-public-methods
@@ -67,13 +53,49 @@ class Job(models.Model):
         verbose_name_plural = "jobs"
 
 
+class Type(models.Model):
+    """Type Model"""
+    
+    name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return str(self.name)
+
+
+class Level(models.Model):
+    """Level Model"""
+    
+    name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return str(self.name)
+
+
+class Salary(models.Model):
+    """Salary Model"""
+    
+    value = MoneyField(
+        max_digits=14, decimal_places=0, default_currency="USD", null=True, blank=True,
+    )
+    
+    def __str__(self):
+        return str(self.value)
+
+
+class Experience(models.Model):
+    """Experience Model"""
+    
+    value = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return str(self.value)
+
+
 class Activity(models.Model):
     """Job Activity Model"""
     
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="job_activities"
-    )
-    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name="job_activities")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="activities")
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name="activities")
     apply_date = models.DateTimeField()
     
     class Meta:

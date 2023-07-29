@@ -13,6 +13,7 @@ from smart_selects.db_fields import ChainedForeignKey
 from cities_light.models import City
 from cities_light.models import Region
 from cities_light.models import Country
+from autoslug import AutoSlugField
 
 
 class JobSeeker(models.Model):
@@ -195,7 +196,7 @@ class Company(models.Model):
     """Company Model"""
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     description = models.CharField(max_length=255)
     logo = ValidatedFileField(
         libraries=["all"],
@@ -218,7 +219,8 @@ class Company(models.Model):
     social = models.ForeignKey(
         Social, on_delete=models.CASCADE, related_name="companies"
     )
-    
+    slug = AutoSlugField(populate_from="name")
+
     def __str__(self):
         return str(self.name)
     
