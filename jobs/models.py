@@ -18,13 +18,13 @@ from multiselectfield import MultiSelectField
 from multiselectfield.utils import get_max_length
 from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
+import django_filters
 
 
 class Job(models.Model):
     """Job Model"""
-
+    
     title = models.CharField(max_length=100)
-    type = models.ManyToManyField("Type")
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="jobs")
     created_date = models.DateTimeField(auto_now_add=True)
     expiry_date = models.DateTimeField(null=True, blank=True)
@@ -32,9 +32,24 @@ class Job(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="jobs")
     category = models.ManyToManyField("Category")
     is_active = models.BooleanField(default=True)
-    level = models.ManyToManyField("Level")
-    experience = models.ManyToManyField("Experience")
-    salary = models.ForeignKey("Salary", on_delete=models.CASCADE, related_name="jobs")
+    type = models.CharField(
+        max_length=14,
+        choices=JOB_TYPE_CHOICES,
+        default="No matter",
+    )
+    level = models.CharField(
+        max_length=9,
+        choices=LEVEL_CHOICES,
+        default="No matter",
+    )
+    experience = models.CharField(
+        max_length=13,
+        choices=EXPERIENCE_CHOICES,
+        default="No matter",
+    )
+    salary = MoneyField(
+        max_digits=14, decimal_places=2, default_currency="USD", null=True, blank=True
+    )
     skill = models.ManyToManyField(Skill)
     slug = AutoSlugField(populate_from="title")
     
@@ -51,44 +66,6 @@ class Job(models.Model):
         db_table = "job"
         verbose_name = "job"
         verbose_name_plural = "jobs"
-
-
-class Type(models.Model):
-    """Type Model"""
-    
-    name = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return str(self.name)
-
-
-class Level(models.Model):
-    """Level Model"""
-    
-    name = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return str(self.name)
-
-
-class Salary(models.Model):
-    """Salary Model"""
-    
-    value = MoneyField(
-        max_digits=14, decimal_places=0, default_currency="USD", null=True, blank=True,
-    )
-    
-    def __str__(self):
-        return str(self.value)
-
-
-class Experience(models.Model):
-    """Experience Model"""
-    
-    value = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return str(self.value)
 
 
 class Activity(models.Model):
