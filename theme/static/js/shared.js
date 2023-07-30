@@ -126,8 +126,6 @@ new TypeIt("#header-logo", {
     .pause(100)
     .type("W")
     .pause(100)
-    .type("h")
-    .pause(100)
     .type("e")
     .pause(100)
     .type("r")
