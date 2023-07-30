@@ -63,6 +63,8 @@ THIRD_PARTY_APPS = [
     "cities_light",
     "phonenumber_field",
     "ckeditor",
+    "django_filters",
+    "widget_tweaks",
 ]
 
 LOCAL_APPS = [
