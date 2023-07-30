@@ -2,8 +2,11 @@ function collapse(obj) {
     let element = obj;
     if (element.classList.contains("collapse-open")) {
         element.classList.remove("collapse-open");
+        element.classList.add("collapse-close");
     } else {
         element.classList.add("collapse-open");
+        element.classList.remove("collapse-close");
+
     }
 }
 
