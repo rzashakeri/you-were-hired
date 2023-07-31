@@ -9,39 +9,66 @@ class JobFilter(django_filters.FilterSet):
     TAILWIND_CLASS = "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600"
     
     # This section for search =>
-    job_title = django_filters.CharFilter(
+    title_search = django_filters.CharFilter(
         lookup_expr='icontains',
         field_name="title",
     )
-    job_location = django_filters.CharFilter(field_name="location__region__name", lookup_expr='icontains')
-    job_type = django_filters.CharFilter(field_name="type", lookup_expr='icontains')
-    job_experience = django_filters.CharFilter(field_name="experience", lookup_expr='icontains')
+    location_search = django_filters.CharFilter(field_name="location__region__name", lookup_expr='icontains')
+    type_search = django_filters.CharFilter(field_name="type", lookup_expr='icontains')
+    experience_search = django_filters.CharFilter(field_name="experience", lookup_expr='icontains')
     
     # This section for filter =>
-    type = django_filters.MultipleChoiceFilter(
+    type_filter = django_filters.MultipleChoiceFilter(
         choices=JOB_TYPE_CHOICES,
         widget=forms.CheckboxSelectMultiple(
             attrs={
                 "class": TAILWIND_CLASS
             }
-        )
+        ),
+        field_name="type",
+        lookup_expr='icontains'
     )
-    level = django_filters.MultipleChoiceFilter(
+    level_filter = django_filters.MultipleChoiceFilter(
         choices=LEVEL_CHOICES,
         widget=forms.CheckboxSelectMultiple(
             attrs={
                 "class": TAILWIND_CLASS
             }
-        )
+        ),
+        field_name="level",
+        lookup_expr='icontains'
     )
-    experience = django_filters.MultipleChoiceFilter(
+    experience_filter = django_filters.MultipleChoiceFilter(
         choices=EXPERIENCE_CHOICES,
         widget=forms.CheckboxSelectMultiple(
             attrs={
                 "class": TAILWIND_CLASS
             }
-        )
+        ),
+        field_name="experience",
+        lookup_expr='icontains'
     )
+    
+    # This filter shows in mobile breakpoints =>
+    type = django_filters.ChoiceFilter(
+        choices=JOB_TYPE_CHOICES,
+        field_name="type",
+        lookup_expr='icontains',
+        empty_label=None
+    )
+    level = django_filters.ChoiceFilter(
+        choices=LEVEL_CHOICES,
+        field_name="level",
+        lookup_expr='icontains',
+        empty_label=None
+    )
+    experience = django_filters.ChoiceFilter(
+        choices=EXPERIENCE_CHOICES,
+        field_name="experience",
+        lookup_expr='icontains',
+        empty_label=None
+    )
+    
     order_by = django_filters.OrderingFilter(
         choices=(
             ('created_date', 'Newest'),
@@ -49,4 +76,7 @@ class JobFilter(django_filters.FilterSet):
         ),
         empty_label=None
     )
-
+    
+    class Meta:
+        model = Job
+        fields = ['type']
