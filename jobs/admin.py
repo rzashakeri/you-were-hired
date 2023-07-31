@@ -7,7 +7,7 @@ from jobs.models import Job, Category
 class JobAdmin(admin.ModelAdmin):
     """Job Admin"""
     list_display = ["title", "company", "created_date", "location", "salary"]
-    list_filter = ["level", "experience", "level"]
+    list_filter = ["level", "experience", "level", "type", "category"]
 
 
 @admin.register(Category)
