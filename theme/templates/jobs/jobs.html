@@ -14,7 +14,7 @@
                         <div class="join ">
                             <input class="bg-white bg-opacity-20 backdrop-blur-xl rounded w-full focus:outline-none border-none focus:ring-0 placeholder:text-white join-item"
                                    placeholder="Email"/>
-                            <button class="btn glass rounded-r-full text-white capitalize hover:text-black">Subscribe
+                            <button class="btn glass rounded-r-full text-white capitalize hover:text-black">{% translate 'Subscribe' %}
                             </button>
                         </div>
                     </div>
@@ -161,12 +161,12 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/>
+                                          d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"></path>
                                 </svg>
-                                <span class="btm-nav-label font-semibold text-xl">Filters</span>
+                                <span class="btm-nav-label font-semibold text-xl">{% translate 'Filters' %}</span>
                             </button>
                             <div
-                                    class="invisible fixed bottom-0 left-0 right-0 z-[1045] flex h-full max-h-full max-w-full translate-y-full flex-col border-none bg-base-200 bg-clip-padding text-base-content shadow-sm outline-none transition duration-300 ease-in-out [&[data-te-offcanvas-show]]:transform-none"
+                                    class="invisible rounded-t-[15px] fixed bottom-0 left-0 right-0 z-[1045] flex h-3/4 max-h-full max-w-full translate-y-full flex-col border-none bg-base-200 bg-clip-padding text-base-content shadow-sm outline-none transition duration-300 ease-in-out [&[data-te-offcanvas-show]]:transform-none"
                                     tabindex="-1"
                                     id="offcanvasBottom"
                                     aria-labelledby="offcanvasBottomLabel"
@@ -174,50 +174,47 @@
                                 <div class="w-full">
                                     <div class="rounded-xl p-5">
                                         <div class="flex items-center justify-between w-full">
-                                            <h2 class="text-base-content text-xl font-bold">Apply filters</h2>
+                                            <h2 class="text-base-content text-xl font-bold">{% translate 'Apply filters' %}</h2>
                                             <button
                                                     type="button"
                                                     class="box-content rounded-none mt-5 border-none opacity-50 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
                                                     data-te-offcanvas-dismiss>
-      <span
-              class="w-[1em] focus:opacity-100 disabled:pointer-events-none disabled:select-none disabled:opacity-25 [&.disabled]:pointer-events-none [&.disabled]:select-none [&.disabled]:opacity-25">
-        <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="h-6 w-6">
-          <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </span>
+                                              <span
+                                                      class="w-[1em] focus:opacity-100 disabled:pointer-events-none disabled:select-none disabled:opacity-25 [&.disabled]:pointer-events-none [&.disabled]:select-none [&.disabled]:opacity-25">
+                                                <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke-width="1.5"
+                                                        stroke="currentColor"
+                                                        class="h-6 w-6">
+                                                  <path
+                                                          stroke-linecap="round"
+                                                          stroke-linejoin="round"
+                                                          d="M6 18L18 6M6 6l12 12"></path>
+                                                </svg>
+                                              </span>
                                             </button>
                                         </div>
-                                        <p class="mt-1 text-sm">Use filters to further refine search</p>
+                                        <p class="mt-1 text-sm">{% translate 'Use filters to further refine search' %}</p>
                                         <form method="get">
                                             <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                                                 <div class="flex flex-col">
-                                                    <label for="status" class="text-sm font-medium mb-2">Job
-                                                        Type</label>
+                                                    <label for="status" class="text-sm font-medium mb-2">{% translate 'Job Type' %}</label>
                                                     {% render_field jobs.form.type class="select select-bordered w-full" %}
                                                 </div>
                                                 <div class="flex flex-col">
-                                                    <label for="status" class="text-sm font-medium mb-2">Job
-                                                        Level</label>
+                                                    <label for="status" class="text-sm font-medium mb-2">{% translate 'Job Level' %}</label>
                                                     {% render_field jobs.form.level class="select select-bordered w-full" %}
                                                 </div>
                                                 <div class="flex flex-col">
-                                                    <label for="status" class="text-sm font-medium mb-2">Job
-                                                        Experience</label>
+                                                    <label for="status" class="text-sm font-medium mb-2">{% translate 'Job Experience' %}</label>
                                                     {% render_field jobs.form.experience class="select select-bordered w-full" %}
                                                 </div>
                                             </div>
                                             <div class="mt-6 w-full">
                                                 <button class="btn btn-success w-full">
-                                                    Search
+                                                    {% translate 'Search' %}
                                                 </button>
                                             </div>
                                         </form>
