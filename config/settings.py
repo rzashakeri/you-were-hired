@@ -67,6 +67,7 @@ THIRD_PARTY_APPS = [
     "widget_tweaks",
     "file_validator",
     "django_cleanup.apps.CleanupConfig",
+    "sorl.thumbnail",
 ]
 
 LOCAL_APPS = [
