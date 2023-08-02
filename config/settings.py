@@ -65,6 +65,7 @@ THIRD_PARTY_APPS = [
     "ckeditor",
     "django_filters",
     "widget_tweaks",
+    "file_validator",
 ]
 
 LOCAL_APPS = [
@@ -349,3 +350,9 @@ CKEDITOR_CONFIGS = {
 }
 
 GEOIP_PATH = str(BASE_DIR / "geoip")
+
+# file-validator
+# https://file-validator.github.io/docs/django/config
+FILE_UPLOAD_HANDLERS = [
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]
