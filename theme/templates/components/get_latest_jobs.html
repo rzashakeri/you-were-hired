@@ -1,0 +1,15 @@
+{% load i18n %}
+<div title="{% translate 'Get Latest Jobs' %}" class="card bg-blue-600 text-base-100">
+    <div class="card-body">
+        <h2 class="card-title text-2xl text-white">{% translate 'Get The Latest Jobs Right Into Your Inbox!' %}</h2>
+        <p class="text-white mb-3">{% translate 'We Just Need Your Email Address' %}</p>
+        <div class="card-actions">
+            <div class="join ">
+                <input class="bg-white bg-opacity-20 backdrop-blur-xl rounded w-full focus:outline-none border-none focus:ring-0 placeholder:text-white join-item"
+                       placeholder="Email"/>
+                <button class="btn glass rounded-r-full text-white capitalize hover:text-black">{% translate 'Subscribe' %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
