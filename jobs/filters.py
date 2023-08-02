@@ -1,12 +1,15 @@
 import django_filters
 from django import forms
+from django_filters.widgets import SuffixedMultiWidget
 
 from jobs.models import Job, Category
 from utils.choices import JOB_TYPE_CHOICES, LEVEL_CHOICES, EXPERIENCE_CHOICES
 from dal import autocomplete
 
 
-class RangeWidget(forms.MultiWidget):
+class RangeWidget(SuffixedMultiWidget):
+    suffixes = ['min', 'max']
+    
     def __init__(self, attrs=None, attrs_min=None, attrs_max=None):
         widgets = (
             forms.TextInput(attrs_min),
@@ -27,16 +30,16 @@ class JobFilter(django_filters.FilterSet):
     TAILWIND_CLASS = "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600"
     
     # This section for search =>
-    title_search = django_filters.CharFilter(
+    title = django_filters.CharFilter(
         lookup_expr='icontains',
         field_name="title",
     )
-    location_search = django_filters.CharFilter(field_name="location__region__name", lookup_expr='icontains')
-    type_search = django_filters.CharFilter(field_name="type", lookup_expr='icontains')
-    experience_search = django_filters.CharFilter(field_name="experience", lookup_expr='icontains')
+    location = django_filters.CharFilter(field_name="location__region__name", lookup_expr='icontains')
+    job_type = django_filters.CharFilter(field_name="type", lookup_expr='icontains')
+    work_experience = django_filters.CharFilter(field_name="experience", lookup_expr='icontains')
     
     # This section for filter =>
-    type_filter = django_filters.MultipleChoiceFilter(
+    type = django_filters.MultipleChoiceFilter(
         choices=JOB_TYPE_CHOICES,
         widget=forms.CheckboxSelectMultiple(
             attrs={
@@ -47,7 +50,7 @@ class JobFilter(django_filters.FilterSet):
         lookup_expr='icontains',
         label="Type"
     )
-    level_filter = django_filters.MultipleChoiceFilter(
+    level = django_filters.MultipleChoiceFilter(
         choices=LEVEL_CHOICES,
         widget=forms.CheckboxSelectMultiple(
             attrs={
@@ -59,7 +62,7 @@ class JobFilter(django_filters.FilterSet):
         label="Level"
     
     )
-    experience_filter = django_filters.MultipleChoiceFilter(
+    experience = django_filters.MultipleChoiceFilter(
         choices=EXPERIENCE_CHOICES,
         widget=forms.CheckboxSelectMultiple(
             attrs={
@@ -70,7 +73,7 @@ class JobFilter(django_filters.FilterSet):
         lookup_expr='icontains',
         label="Experience"
     )
-    category_filter = django_filters.ModelMultipleChoiceFilter(
+    category = django_filters.ModelMultipleChoiceFilter(
         widget=forms.CheckboxSelectMultiple(
             attrs={
                 "class": TAILWIND_CLASS
@@ -82,7 +85,7 @@ class JobFilter(django_filters.FilterSet):
         label="Category"
     )
     
-    salary_filter = django_filters.RangeFilter(
+    salary = django_filters.RangeFilter(
         field_name="salary",
         lookup_expr='icontains',
         label="Salary",
@@ -90,26 +93,6 @@ class JobFilter(django_filters.FilterSet):
             attrs_min={'placeholder': 'Min Salary'},
             attrs_max={'placeholder': 'Max Salary'},
         )
-    )
-    
-    # This filter shows in mobile breakpoints =>
-    type = django_filters.ChoiceFilter(
-        choices=JOB_TYPE_CHOICES,
-        field_name="type",
-        lookup_expr='icontains',
-        empty_label=None
-    )
-    level = django_filters.ChoiceFilter(
-        choices=LEVEL_CHOICES,
-        field_name="level",
-        lookup_expr='icontains',
-        empty_label=None
-    )
-    experience = django_filters.ChoiceFilter(
-        choices=EXPERIENCE_CHOICES,
-        field_name="experience",
-        lookup_expr='icontains',
-        empty_label=None
     )
     
     order_by = django_filters.OrderingFilter(
