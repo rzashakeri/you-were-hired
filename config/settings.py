@@ -66,6 +66,7 @@ THIRD_PARTY_APPS = [
     "django_filters",
     "widget_tweaks",
     "file_validator",
+    "django_cleanup.apps.CleanupConfig",
 ]
 
 LOCAL_APPS = [
