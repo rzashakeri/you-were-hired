@@ -29,15 +29,15 @@ class JobsView(View):
                     pass
         geo_ip = GeoIP2()
         country = geo_ip.country(client_ip)["country_name"]
-        filtered_jobs = JobFilter(
+        filters = JobFilter(
             request.GET,
             queryset=Job.objects.filter(
                 location__country__name__contains=country,
                 is_active=True
             ).all(),
         )
-        filtered_queryset = filtered_jobs.qs
-        paginator = Paginator(filtered_queryset, 9)
+        filters_queryset = filters.qs
+        paginator = Paginator(filters_queryset, 9)
         page_number = request.GET.get('page')
         try:
             jobs = paginator.page(page_number)
@@ -45,5 +45,5 @@ class JobsView(View):
             jobs = paginator.page(1)
         except EmptyPage:
             jobs = paginator.page(paginator.num_pages)
-        context = {"jobs": jobs, "filtered_jobs": filtered_jobs}
+        context = {"jobs": jobs, "filters": filters}
         return render(request, "jobs/jobs.html", context)
