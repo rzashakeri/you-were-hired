@@ -4,6 +4,7 @@ from django.core.validators import (
 )
 from django.db import models
 from django.contrib.auth.models import User
+from utils import logo_directory_path
 from utils.choices import LEVEL_CHOICES, GENDER_CHOICES
 from birthday import BirthdayField, BirthdayManager
 from phonenumber_field.modelfields import PhoneNumberField
@@ -203,7 +204,16 @@ class Company(models.Model):
         acceptable_mimes=["image/png"],
         acceptable_types=["image"],
         max_upload_file_size=10485760,
-        upload_to="company/logo/images/",
+        upload_to=logo_directory_path,
+        null=True,
+        blank=True,
+    )
+    cover = ValidatedFileField(
+        libraries=["all"],
+        acceptable_mimes=["image/png"],
+        acceptable_types=["image"],
+        max_upload_file_size=10485760,
+        upload_to="company/cover/images/",
         null=True,
         blank=True,
     )
@@ -216,13 +226,17 @@ class Company(models.Model):
     email = models.EmailField(null=True, blank=True)
     phone = PhoneNumberField(null=True, blank=True)
     size = models.CharField(max_length=50)
-    social = models.ForeignKey(
-        Social, on_delete=models.CASCADE, related_name="companies"
+    social = models.ManyToManyField(
+        Social
     )
     slug = AutoSlugField(populate_from="name")
 
     def __str__(self):
         return str(self.name)
+    
+    def save(self, *args, **kwargs):
+        self.name = self.name.lower()
+        return super(Company, self).save(*args, **kwargs)
     
     class Meta:
         # pylint: disable=too-few-public-methods

@@ -4,6 +4,8 @@ from django.db import models
 from cities_light.models import City
 from cities_light.models import Region
 from cities_light.models import Country
+from django.urls import reverse
+from django_extensions.db.fields import ShortUUIDField
 
 from users.models import Company, Skill, Location
 from utils.choices import (
@@ -48,17 +50,22 @@ class Job(models.Model):
         default="No matter",
     )
     salary = MoneyField(
-        max_digits=14, decimal_places=2, default_currency="USD", null=True, blank=True
+        max_digits=14, decimal_places=0, default_currency="USD", null=True, blank=True
     )
     skill = models.ManyToManyField(Skill)
     slug = AutoSlugField(populate_from="title")
     
+
     def __str__(self):
         return f"{self.title} | {self.company}"
     
     def get_absolute_url(self):
-        pass
-    
+        return reverse('job', kwargs={'id': self.pk, 'slug': self.slug, 'company': self.company.slug})
+
+    def save(self, *args, **kwargs):
+        self.title = self.title.lower()
+        return super(Job, self).save(*args, **kwargs)
+
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
