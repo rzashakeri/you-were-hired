@@ -1,11 +1,11 @@
-{% load static i18n %}
+{% load static i18n thumbnail %}
 <div title="job"
      class="job-card max-md:w-full flex-auto w-[22rem] bg-base-100 p-4 rounded-lg divide-y hover:drop-shadow-2xl transition duration-500 ease-in-out">
     <div title="job head" class="flex flex-row gap-3 items-center mb-4">
         {% if job.company.logo %}
-            <img title="Job Logo" class="rounded-[12px] w-12 h-12"
-                 src="{{ job.company.logo.url }}"
-                 alt="{{ job.company.name }}">
+            {% thumbnail job.company.logo "48x48" crop="center" as logo %}
+                <img class="rounded-[12px] w-12 h-12" src="{{ logo.url }}" width="{{ logo.width }}" height="{{ logo.height }}" alt="{{ job.company.name }}">
+            {% endthumbnail %}
         {% else %}
             <div class="avatar placeholder">
                 <div class="bg-neutral-focus text-neutral-content rounded-[12px] w-16">
@@ -14,7 +14,7 @@
             </div>
         {% endif %}
         <div class="flex flex-col gap-1">
-            <a href="" class="font-bold">{{ job.title }}</a>
+            <a href="{{ job.get_absolute_url }}" class="font-bold">{{ job.title }}</a>
             <div class="flex flex-row gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
