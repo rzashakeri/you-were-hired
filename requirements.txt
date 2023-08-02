@@ -22,10 +22,10 @@ django-ckeditor==6.7.0
 django-ipware==5.0.0
 django-filter==23.2
 django-widget-tweaks==1.4.12
+django-cleanup==8.0.0
 Pillow==10.0.0
 file_validator==1.0.9
 geoip2==4.7.0
-uuid6==2023.5.2
 
 # Test
 pytest==7.4.0
