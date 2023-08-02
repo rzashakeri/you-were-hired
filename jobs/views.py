@@ -12,7 +12,7 @@ from jobs.models import Job
 
 class JobsView(View):
     """Job View"""
-
+    
     def get(self, request):
         # pylint: disable=missing-docstring
         if settings.DEBUG:
@@ -47,3 +47,14 @@ class JobsView(View):
             jobs = paginator.page(paginator.num_pages)
         context = {"jobs": jobs, "filters": filters}
         return render(request, "jobs/jobs.html", context)
+
+
+class JobView(View):
+    """Job View"""
+    
+    def get(self, request, id, company, slug):
+        # pylint: disable=missing-docstring
+        
+        job = Job.objects.get(id=id)
+        context = {"job": job}
+        return render(request, "jobs/job.html", context)
