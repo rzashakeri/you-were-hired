@@ -36,8 +36,8 @@ class JobsView(View):
                 is_active=True
             ).all(),
         )
-        filtered_queryset = filters.qs
-        paginator = Paginator(filtered_queryset, 9)
+        filters_queryset = filters.qs
+        paginator = Paginator(filters_queryset, 9)
         page_number = request.GET.get('page')
         try:
             jobs = paginator.page(page_number)
