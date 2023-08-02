@@ -411,14 +411,16 @@
                     </div>
                     <div title="pages" class="join mb-2">
                         {% if jobs.has_previous %}
-                            <a class="join-item btn btn-active" href="?{% update_params page=1 %}">first</a>
                             <a class="join-item btn btn-active"
-                               href="?{% update_params page=jobs.previous_page_number %}">previous</a>
+                               href="?{% update_params page=1 %}">{% translate 'first' %}</a>
+                            <a class="join-item btn btn-active"
+                               href="?{% update_params page=jobs.previous_page_number %}">{% translate 'previous' %}</a>
                         {% endif %}
                         {% if jobs.has_next %}
-                            <a class="join-item btn btn-active" href="?{% update_params page=jobs.next_page_number %}">next</a>
                             <a class="join-item btn btn-active"
-                               href="?{% update_params page=jobs.paginator.num_pages %}">last</a>
+                               href="?{% update_params page=jobs.next_page_number %}">{% translate 'next' %}</a>
+                            <a class="join-item btn btn-active"
+                               href="?{% update_params page=jobs.paginator.num_pages %}">{% translate 'last' %}</a>
                         {% endif %}
                     </div>
                 </div>
