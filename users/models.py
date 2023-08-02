@@ -224,6 +224,10 @@ class Company(models.Model):
     def __str__(self):
         return str(self.name)
     
+    def save(self, *args, **kwargs):
+        self.name = self.name.lower()
+        return super(Company, self).save(*args, **kwargs)
+    
     class Meta:
         # pylint: disable=too-few-public-methods
         # pylint: disable=missing-class-docstring
