@@ -35,3 +35,18 @@ JOB_TYPE_CHOICES = (
     ("remote", _("Remote")),
     ("no matter", _("No matter")),
 )
+
+COMPANY_SIZE_CHOICES = (
+    ("under 10 people", _("Under 10 People")),
+    ("11 to 50 people", _("11 To 50 People")),
+    ("51 to 200 people", _("51 To 200 People")),
+    ("201 to 500 people", _("201 To 500 People")),
+    ("501 to 1000 people", _("501 To 1000 People")),
+    ("1001 to 5000 people", _("1001 To 5000 People")),
+    ("more than 5000 people", _("mMore Than 5000 People")),
+)
+
+ROLES_CHOICES = (
+    ("applicant", _("applicant")),
+    ("employer", _("employer")),
+)
