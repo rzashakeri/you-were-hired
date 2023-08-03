@@ -68,12 +68,16 @@ THIRD_PARTY_APPS = [
     "file_validator",
     "django_cleanup.apps.CleanupConfig",
     "sorl.thumbnail",
+    "crispy_forms",
+    "crispy_tailwind",
 ]
 
 LOCAL_APPS = [
     "pages.apps.PagesConfig",
     "users.apps.UsersConfig",
     "jobs.apps.JobsConfig",
+    "companies.apps.CompaniesConfig",
+    "utils.apps.UtilsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -192,6 +196,8 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
@@ -201,6 +207,42 @@ SOCIALACCOUNT_PROVIDERS = {
         "APP": {"client_id": "123", "secret": "456", "key": ""}
     }
 }
+
+ACCOUNT_FORMS = {
+    'add_email': 'allauth.account.forms.AddEmailForm',
+    'change_password': 'allauth.account.forms.ChangePasswordForm',
+    'disconnect': 'allauth.socialaccount.forms.DisconnectForm',
+    'login': 'allauth.account.forms.LoginForm',
+    'reset_password': 'allauth.account.forms.ResetPasswordForm',
+    'reset_password_from_key': 'allauth.account.forms.ResetPasswordKeyForm',
+    'set_password': 'allauth.account.forms.SetPasswordForm',
+    'signup': 'users.forms.CustomSignupForm',
+    'user_token': 'allauth.account.forms.UserTokenForm',
+}
+
+ACCOUNT_RATE_LIMITS = {
+    # Change password view (for users already logged in)
+    "change_password": "5/m",
+    # Email management (e.g. add, remove, change primary)
+    "manage_email": "10/m",
+    # Request a password reset, global rate limit per IP
+    "reset_password": "20/m",
+    # Rate limit measured per individual email address
+    "reset_password_email": "5/m",
+    # Password reset (the view the password reset email links to).
+    "reset_password_from_key": "20/m",
+    # Signups.
+    "signup": "20/m",
+    # NOTE: Login is already protected via `ACCOUNT_LOGIN_ATTEMPTS_LIMIT`
+}
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 # django smart select
 # https://django-smart-selects.readthedocs.io/en/latest/installation.html
@@ -351,6 +393,7 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+# geoip files
 GEOIP_PATH = str(BASE_DIR / "geoip")
 
 # file-validator
@@ -358,3 +401,15 @@ GEOIP_PATH = str(BASE_DIR / "geoip")
 FILE_UPLOAD_HANDLERS = [
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
 ]
+
+# sorl-thumbnail
+# https://sorl-thumbnail.readthedocs.io/en/latest/index.html
+THUMBNAIL_DEBUG = True
+
+# crispy-forms
+# https://github.com/django-crispy-forms/crispy-tailwind
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"
+
+# disposable email checker
+# set from django.utils.encoding import force_str in disposable email checker validators.py

@@ -21,7 +21,7 @@ document.addEventListener('mousemove', (event) => {
     const threshold = 50;
 
     if (distance <= threshold) {
-        myFunction();
+        changePosition();
     }
 });
 
@@ -45,7 +45,7 @@ function inputChange(valueHere) {
 }
 
 
-function myFunction() {
+function changePosition() {
 
     const element = document.getElementById('signin-button');
 

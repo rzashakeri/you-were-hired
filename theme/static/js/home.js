@@ -61,6 +61,5 @@ new TypeIt("#home-title", {
     .pause(100)
     .type("?")
     .pause(100)
-    .type("🤔")
     .go();
 
