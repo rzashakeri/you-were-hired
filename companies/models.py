@@ -5,6 +5,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from file_validator.models import ValidatedFileField
 from autoslug import AutoSlugField
 
+from utils.choices import COMPANY_SIZE_CHOICES
 from utils.models import Location
 
 
@@ -40,7 +41,7 @@ class Company(models.Model):
     is_verified = models.BooleanField(default=False)
     email = models.EmailField(null=True, blank=True)
     phone = PhoneNumberField(null=True, blank=True)
-    size = models.CharField(max_length=50)
+    size = models.CharField(max_length=21, choices=COMPANY_SIZE_CHOICES)
     slug = AutoSlugField(populate_from="name")
     
     def __str__(self):
