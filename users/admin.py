@@ -1,10 +1,8 @@
 from django.contrib import admin
 from users.models import (
     JobSeeker,
-    Skill,
     Education,
-    Experience,
-    Company, Location, Social,
+    Experience, Skill, Social,
 )
 
 
@@ -14,13 +12,6 @@ class JobSeekerAdmin(admin.ModelAdmin):
     
     list_display = ["__str__", "gender", "level", "location"]
     list_filter = ["gender", "level", "location"]
-
-
-@admin.register(Skill)
-class SkillAdmin(admin.ModelAdmin):
-    """Seeker Skill Admin"""
-    
-    list_display = ["name", "level"]
 
 
 @admin.register(Education)
@@ -37,17 +28,11 @@ class ExperienceAdmin(admin.ModelAdmin):
     list_display = ["profile", "job_title", "company_name"]
 
 
-@admin.register(Company)
-class CompanyAdmin(admin.ModelAdmin):
-    """Experience Detail Admin"""
+@admin.register(Skill)
+class SkillAdmin(admin.ModelAdmin):
+    """Seeker Skill Admin"""
     
-    list_display = ["user", "name", "website_url", "is_verified"]
-
-
-@admin.register(Location)
-class CompanyAdmin(admin.ModelAdmin):
-    """Company Admin"""
-    pass
+    list_display = ["name", "level"]
 
 
 @admin.register(Social)
