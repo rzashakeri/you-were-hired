@@ -31,7 +31,7 @@ module.exports = {
          * patterns match your project structure.
          */
         /* JS 1: Ignore any JavaScript in node_modules folder. */
-        // '!../../**/node_modules',
+        '!../../**/node_modules',
         /* JS 2: Process all JavaScript files in the project. */
         // '../../**/*.js',
 
@@ -50,12 +50,11 @@ module.exports = {
          * for forms. If you don't like it or have own styling for forms,
          * comment the line below to disable '@tailwindcss/forms'.
          */
-        require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
         require('@tailwindcss/line-clamp'),
         require('@tailwindcss/aspect-ratio'),
         require("daisyui"),
-        require("tw-elements/dist/plugin.cjs")
+        require("tw-elements/dist/plugin.cjs"),
 
     ],
     daisyui: {

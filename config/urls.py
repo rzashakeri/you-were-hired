@@ -23,7 +23,7 @@ urlpatterns = [
     path("", include("pages.urls")),
     path("jobs/", include("jobs.urls")),
     path("admin/", admin.site.urls),
-    re_path(r'^chaining/', include('smart_selects.urls')),
-    path("accounts/", include("allauth.urls")),
+    path("account/", include("allauth.urls")),
+    path("companies/", include("companies.urls")),
     path("__reload__/", include("django_browser_reload.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
