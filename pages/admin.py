@@ -1,6 +1,6 @@
 """admin section page"""
 from django.contrib import admin
 
-from pages.models import PageModel
+from pages.models import Page
 
-admin.site.register(PageModel)
+admin.site.register(Page)
