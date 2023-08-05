@@ -152,6 +152,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+
 # STATIC
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
@@ -410,6 +411,11 @@ THUMBNAIL_DEBUG = True
 # https://github.com/django-crispy-forms/crispy-tailwind
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 CRISPY_TEMPLATE_PACK = "tailwind"
+
+# remove base input style in crispy_tailwind/templatetags/tailwind_field.py =>
+# base_input = (
+#     ""
+# )
 
 # disposable email checker
 # set from django.utils.encoding import force_str in disposable email checker validators.py
