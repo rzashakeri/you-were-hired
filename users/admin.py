@@ -10,8 +10,8 @@ from users.models import (
 class ProfileAdmin(admin.ModelAdmin):
     """Seeker Profile Admin"""
 
-    list_display = ["user", "gender", "level", "location"]
-    list_filter = ["gender", "level", "location"]
+    list_display = ["user", "gender", "level"]
+    list_filter = ["gender", "level"]
 
 
 @admin.register(Education)
