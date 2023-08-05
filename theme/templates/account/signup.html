@@ -1,8 +1,5 @@
 {% extends "base.html" %}
-
-{% load i18n static %}
-{% load account socialaccount %}
-
+{% load account socialaccount tailwind_filters i18n static %}
 {% block title %}{% translate "Sign Up" %}{% endblock %}
 
 {% block extra_javascript %}
@@ -12,64 +9,45 @@
 {% block content %}
     <div class="bg-base-200 p-10">
         <div class="w-full flex flex-col max-w-sm p-6 m-auto mx-auto bg-base-100 rounded-lg shadow-md">
-            <div title="logo" class="flex">
-                <a id="signup-logo" class=" font-semibold  normal-case text-2xl font-['Ubuntu']">Here's forbidden despair because no one is going to be rejected, let's go ... 😎</a>
-            </div>
-
-            <form class="mt-6 flex flex-col gap-3">
+            <p id="signup-title"
+               class="w-full font-semibold normal-case text-[22px]">{% translate 'Experience the recruitment process without being rejected' %}</p>
+            <form id="signup_form" method="post" action="{% url 'account_signup' %}" class="mt-6 flex flex-col">
+                {% csrf_token %}
                 <div class="flex flex-col gap-2">
-                    <label for="username" class="block text-sm text-base-content">Username</label>
-                    <input type="text" placeholder="username" class="w-full input input-bordered"/>
+                    {{ form.email|as_crispy_field }}
                 </div>
-                <div class="flex flex-col gap-2">
-                    <label for="username" class="block text-sm text-base-content">Email</label>
-                    <input type="text" placeholder="Email" class="w-full input input-bordered"/>
-                </div>
-                <div class="">
-                    <div class="flex items-center justify-between">
-                        <label for="password" class="block text-sm text-base-content mb-2">password</label>
-                        <a href="{% url 'account_reset_password' %}" class="link link-hover text-sm mb-2">Forget
-                            Password?</a>
-                    </div>
+                <div class="flex flex-col">
                     <div class="relative">
-                        <input onkeyup="inputChange(this.value)" tabindex="-1" id="signup-password-input" type="password"
-                               placeholder="password" class="w-full input input-bordered "/>
-                        <svg id="show-password-icon" onclick="showHidePassword('signup-password-input')"
+                        {{ form.password1|as_crispy_field }}
+                        <svg id="show-password-icon" onclick="showHidePassword('id_password1')"
                              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="currentColor" class="bottom-3 right-3 absolute w-6 h-6 cursor-pointer">
+                             stroke="currentColor" class="bottom-6 right-3 absolute w-6 h-6 cursor-pointer">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"></path>
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                         </svg>
-
-                        <svg id="hide-password-icon" onclick="showHidePassword('signup-password-input')"
+                        <svg id="hide-password-icon" onclick="showHidePassword('id_password1')"
                              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="currentColor" class="hidden absolute bottom-3 right-3 w-6 h-6 cursor-pointer">
+                             stroke="currentColor" class="hidden absolute bottom-6 right-3 w-6 h-6 cursor-pointer">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"></path>
                         </svg>
-
-
                     </div>
                 </div>
-                <div class="mt-6 relative">
-                    <button id="signin-button" class="btn btn-info transition-all capitalize absolute left-0">
-                        Sign Up
+                <div class="mt-3 relative">
+                    <button id="signup-button" class="btn btn-info transition-all capitalize absolute left-0">
+                        {% translate 'Sign Up' %}
                     </button>
                 </div>
             </form>
-
             <div class="flex items-center justify-between  mt-20">
                 <span class="w-1/5 border-b lg:w-1/5"></span>
-
                 <a href="#" class="text-xs text-center text-base-content uppercase ">
-                    or Continue with Social Media
+                    {% translate 'or Continue with Social Media' %}
                 </a>
-
                 <span class="w-1/5 border-b lg:w-1/5"></span>
             </div>
-
             <div class="flex items-center justify-between gap-2 mt-6 w-full">
                 <button type="button"
                         class="btn btn-ghost">
@@ -93,10 +71,9 @@
                     </svg>
                 </button>
             </div>
-
-            <p class="mt-8 text-xs font-light text-center text-base-content"> Don't have an account? <a href="#"
-                                                                                                        class="font-medium text-base-content">Create
-                One</a></p>
+            <p class="mt-8 text-xs font-light text-center text-base-content">
+                {% translate "Don't have an account?" %}
+                <a href="#" class="font-medium text-base-content">{% translate 'Create One' %}</a></p>
         </div>
     </div>
 {% endblock %}
