@@ -72,3 +72,11 @@
         --my-color: #252b30;
     }
 }
+
+.g-recaptcha > div {
+    width: 100% !important;
+}
+
+.g-recaptcha iframe {
+    width: 100% !important;
+}
