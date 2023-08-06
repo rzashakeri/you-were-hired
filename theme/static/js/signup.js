@@ -59,7 +59,7 @@ function changePosition() {
     const computedStyle = window.getComputedStyle(element);
 
     const position = computedStyle.getPropertyValue('left');
-    const password = document.getElementById('signup-password-input');
+    const password = document.getElementById('id_password1');
 
 
     if (password.value.length !== 10) {
