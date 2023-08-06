@@ -50,3 +50,8 @@ ROLES_CHOICES = (
     ("applicant", _("applicant")),
     ("employer", _("employer")),
 )
+
+MARITAL_CHOICES = (
+    ("married", _("Married")),
+    ("single", _("Single")),
+)
