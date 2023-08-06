@@ -215,7 +215,7 @@ ACCOUNT_FORMS = {
     'add_email': 'allauth.account.forms.AddEmailForm',
     'change_password': 'allauth.account.forms.ChangePasswordForm',
     'disconnect': 'allauth.socialaccount.forms.DisconnectForm',
-    'login': 'allauth.account.forms.LoginForm',
+    'login': 'users.forms.CustomSigninForm',
     'reset_password': 'allauth.account.forms.ResetPasswordForm',
     'reset_password_from_key': 'allauth.account.forms.ResetPasswordKeyForm',
     'set_password': 'allauth.account.forms.SetPasswordForm',
