@@ -70,6 +70,7 @@ THIRD_PARTY_APPS = [
     "sorl.thumbnail",
     "crispy_forms",
     "crispy_tailwind",
+    "captcha"
 ]
 
 LOCAL_APPS = [
@@ -152,6 +153,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = "users.User"
 
 # STATIC
 # ------------------------------------------------------------------------------
@@ -238,9 +240,9 @@ ACCOUNT_RATE_LIMITS = {
 }
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
@@ -419,3 +421,13 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 
 # disposable email checker
 # set from django.utils.encoding import force_str in disposable email checker validators.py
+
+
+# django-recaptcha
+# https://pypi.org/project/django-recaptcha/
+if DEBUG:
+    SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+else:
+    RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
+    RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
+    RECAPTCHA_USE_SSL = True  # Defaults to False
