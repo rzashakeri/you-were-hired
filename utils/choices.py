@@ -55,3 +55,11 @@ MARITAL_CHOICES = (
     ("married", _("Married")),
     ("single", _("Single")),
 )
+
+SKILL_LEVEL_CHOICES = (
+    ("novice", _("Novice")),
+    ("beginner", _("Beginner")),
+    ("skillful", _("Skillful")),
+    ("experienced", _("Experienced")),
+    ("expert", _("Expert")),
+)
