@@ -166,4 +166,7 @@ function showHidePassword(targetID) {
 
 }
 
+setTimeout(function(){
+  $('.message').remove();
+}, 5000);
 

@@ -39,6 +39,8 @@ ALLOWED_HOSTS = []
 # APPS
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
+    "dal",
+    "dal_select2",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -215,7 +217,6 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-
 
 ACCOUNT_FORMS = {
     'add_email': 'allauth.account.forms.AddEmailForm',
